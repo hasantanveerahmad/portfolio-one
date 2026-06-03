@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Global Navigation & Decoupling — Hasan Tanveer Ahmad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F5F0;
+    --ink: #16140F;
+    --ink-2: #2A2823;
+    --muted: #5B5751;
+    --line: #E7E3DC;
+    --chip: #F0EDE6;
+    --accent: #DC6535;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+  .page {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 28px 64px 56px;
+    }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0 22px;
+  }
+  .brand {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .back-link {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .15s ease;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 0 40px;
+    gap: 24px;
+  }
+  .chip {
+    display: inline-block;
+    background: var(--chip);
+    color: var(--ink-2);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 6px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 780px;
+  }
+  .teaser {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.55;
+    max-width: 540px;
+    margin: 0;
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+@media (max-width: 720px) {
+    .page { padding: 24px 24px 40px; }
+    h1 { font-size: 44px; }
+    .stage { padding: 48px 0 32px; }
+  }
+
+  /* ---------- Footer (matches homepage) ---------- */
+  .site-footer {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    border-top: 0;
+    padding: 44px 0;
+    background: #FFFFFF;
+  }
+  .site-footer__inner {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .site-footer__copy {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .site-footer__links {
+    display: flex;
+    gap: 44px;
+  }
+  .site-footer__links a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .15s ease;
+  }
+  .site-footer__links a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .site-footer__inner {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 0 clamp(16px, 5vw, 28px);
+    }
+    .site-footer__links {
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+  }
+
+</style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <a class="back-link" href="../index.html">← Back to Homepage</a>
+    </nav>
+
+    <main class="stage">
+      <h1>Global Navigation & Decoupling</h1>
+      <p class="teaser">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <div class="status"><span class="dot"></span> Case study coming soon</div>
+    </main>
+  </div>
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <span class="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
+        <nav class="site-footer__links">
+          <a href="#">Copy email</a>
+          <a href="#">View Resume</a>
+        </nav>
+      </div>
+    </footer>
+</body>
+</html>
