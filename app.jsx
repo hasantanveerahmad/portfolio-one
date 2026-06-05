@@ -2,7 +2,7 @@
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "bgColor": "#F8F5F0",
   "cardColor": "#FFFFFF",
-  "accentColor": "#DC6535",
+  "accentColor": "#E2622F",
   "inkColor": "#16140F",
   "mutedColor": "#6B6760",
   "maxWidth": 1024,
@@ -112,24 +112,37 @@ function ProjectCard({ chip, title, desc, art }) {
 }
 
 // ── Photo grid ──────────────────────────────────────────────────────────────
-const TILES = ['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10', 't11', 't12'];
+const TILES = [
+  { cls: 't1', label: 'A1' }, { cls: 't2', label: 'A2' }, { cls: 't3', label: 'A3' },
+  { cls: 't4', label: 'A4' }, { cls: 't5', label: 'A5' }, { cls: 't6', label: 'A6' },
+  { cls: 't7', label: 'B1' }, { cls: 't8', label: 'B2' }, { cls: 't9', label: 'B3' },
+  { cls: 't10', label: 'B4' }, { cls: 't11', label: 'B5' }, { cls: 't12', label: 'B6' }
+];
 
 // ── App ─────────────────────────────────────────────────────────────────────
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [emailCopied, setEmailCopied] = React.useState(false);
 
-  // Apply theme vars to :root so all CSS picks them up.
-  React.useEffect(() => {
-    const r = document.documentElement.style;
-    r.setProperty('--bg', t.bgColor);
-    r.setProperty('--card', t.cardColor);
-    r.setProperty('--accent', t.accentColor);
-    r.setProperty('--accent-2', mix(t.accentColor, '#000000', 0.15));
-    r.setProperty('--ink', t.inkColor);
-    r.setProperty('--muted', t.mutedColor);
-    r.setProperty('--line', mix(t.bgColor, '#000000', 0.08));
-    r.setProperty('--chip', mix(t.bgColor, '#000000', 0.04));
-  }, [t.bgColor, t.cardColor, t.accentColor, t.inkColor, t.mutedColor]);
+  const copyEmail = (e) => {
+    e.preventDefault();
+    const email = 'hasantanveerahmad@gmail.com';
+    const done = () => { setEmailCopied(true); setTimeout(() => setEmailCopied(false), 2000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(done).catch(() => {
+        window.prompt('Copy this email:', email);
+      });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = email;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (err) { window.prompt('Copy this email:', email); }
+      document.body.removeChild(ta);
+    }
+  };
 
   const pageStyle = { maxWidth: t.maxWidth };
   const cardStyle = {
@@ -142,11 +155,12 @@ function App() {
 
       {/* HERO */}
       <section className="hero">
+        <span className="hero-eyebrow"><span className="eyebrow-dash"></span>Homepage</span>
         <h1>Hi, I'm Haas</h1>
         <p>My goal is to improve the systems we use today, while thinking about how the world will look tomorrow — But it starts by reducing friction within my own life first.</p>
         <div className="hero-actions">
           <button className="connect">Connect</button>
-          <button className="btn-outline">View Resume</button>
+          <a className="btn-outline" href="assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
         </div>
       </section>
 
@@ -199,8 +213,8 @@ function App() {
       {/* PHOTO GRID */}
       {t.showGrid &&
       <section className="grid" aria-label="Photo grid">
-          {TILES.map((cls) =>
-        <div key={cls} className={`tile ${cls}`}></div>
+          {TILES.map(({ cls, label }) =>
+        <div key={cls} className={`tile ${cls}`}><span className="ph">{label}</span></div>
         )}
         </section>
       }
@@ -212,8 +226,8 @@ function App() {
       <div className="site-footer__inner">
         <span className="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
         <nav className="site-footer__links">
-          <a href="#">Copy email</a>
-          <a href="#">View Resume</a>
+          <a href="#" onClick={copyEmail}>{emailCopied ? 'Copied ✓' : 'Copy email'}</a>
+          <a href="assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
         </nav>
       </div>
     </footer>
