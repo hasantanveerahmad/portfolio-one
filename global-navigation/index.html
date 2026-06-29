@@ -155,7 +155,10 @@
     text-transform: uppercase;
     transition: color .15s ease;
   }
-  .site-footer__links a:hover { color: var(--accent); }
+  .site-footer__links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 
   @media (max-width: 640px) {
     .site-footer__inner {
@@ -189,7 +192,7 @@
         <span class="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
         <nav class="site-footer__links">
           <a href="#">Copy email</a>
-          <a href="#">View Resume</a>
+          <a href="../case-study-2/index.html">View Resume</a>
         </nav>
       </div>
     </footer>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Order Hang Tags Refactor — Hasan Tanveer Ahmad</title>
+<title>Order Hang Tags — Refactor · Hasan Tanveer Ahmad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
       <p class="deck" style="font-weight: 400; line-height: 1.5; color: rgb(78, 74, 67)">An end-to-end redesign that streamlines how brands and garment manufacturers order LYCRA® branded hang tags using a verified Fast Track Code</p>
 
       <figure class="fig herofig fig-bleed" id="fig-1" data-fig="1">
-      <img class="fig__img" src="assets/fig-01-hero.jpg" alt="Redesigned Order Hang Tags — Fabric Details screen with the saved Fast Track Code list" />
+        <img class="fig__img" src="assets/fig-01-hero.jpg" alt="Redesigned Order Hang Tags — Fabric Details screen with the saved Fast Track Code list" />
       </figure>
 
       <div class="meta">
@@ -87,14 +87,12 @@
       <p class="section-kicker">Overview</p>
       <p>Order Hang Tags was the most-used flow on the LYCRA ONE™ portal, and it made people work for every order. Customers came back again and again to order the same branded hang tags, yet each time they had to recall and retype a nine-character certification code from memory, navigate seven separate page loads on a slow backend, and only discovered their mistakes after a reload sent them back to the start.</p>
       <p>As the sole UX/UI designer, working before any design system existed, I rebuilt the flow from seven steps to five and reshaped it around a single idea: stop making users fight a slow, unforgiving system. Directional testing suggested task completion improved by approximately 45%, and the live experience went on to earn an 88% positive rating across 623 real users.</p>
-
-      <p class="section-kicker" style="margin-top:40px;">At a glance</p>
     </div>
 
     <div class="wrap">
       <div class="stats">
         <div class="stat">
-          <div class="stat__num"><span class="unit">~</span>45<span class="unit">%</span></div>
+          <div class="stat__num">45<span class="unit">%</span></div>
           <p class="stat__label">Faster completion</p>
           <p class="stat__sub">Directional (7:48 → 4:15)</p>
         </div>
@@ -191,27 +189,27 @@
 
       <h3 class="h3">What I found</h3>
       <p>Across all four sessions, completion took between seven and ten minutes, and the same friction points recurred:</p>
-      <ul class="list">
-        <li>Dependent fields did not behave like dependent fields. Garment Segment and Garment Product Type were not visibly connected, so users did not know one depended on the other.</li>
-        <li>Errors surfaced only after a full page reload, so users discovered mistakes after a six-second wait.</li>
-        <li>“Save for Later Use” appeared even after a user selected a saved FTC, which led one user to accidentally create a duplicate FTC in the database.</li>
-        <li>Conflicting shipping options could both be selected. Users chose “Free Shipping” alongside a paid carrier, or selected free shipping when their address did not qualify, forcing a reload.</li>
-        <li>Hang tag results did not always match earlier selections, creating a dead end.</li>
-      </ul>
+      <div class="cardlist">
+        <div class="cardlist__item"><p>Dependent fields did not behave like dependent fields. Garment Segment and Garment Product Type were not visibly connected, so users did not know one depended on the other.</p></div>
+        <div class="cardlist__item"><p>Errors surfaced only after a full page reload, so users discovered mistakes after a six-second wait.</p></div>
+        <div class="cardlist__item"><p>“Save for Later Use” appeared even after a user selected a saved FTC, which led one user to accidentally create a duplicate FTC in the database.</p></div>
+        <div class="cardlist__item"><p>Conflicting shipping options could both be selected. Users chose “Free Shipping” alongside a paid carrier, or selected free shipping when their address did not qualify, forcing a reload.</p></div>
+        <div class="cardlist__item"><p>Hang tag results did not always match earlier selections, creating a dead end.</p></div>
+      </div>
 
       <h3 class="h3">The diagnosis</h3>
       <p>Underneath the surface symptoms, the legacy flow failed in two fundamental ways. This became the thesis for the entire redesign:</p>
-      <ol class="numlist">
-        <li>
+      <div class="cardlist cardlist--num">
+        <div class="cardlist__item">
           <h4>State management</h4>
           <p>Fields didn't communicate with each other, which let users make conflicting choices the system should never have allowed.</p>
-        </li>
-        <li>
+        </div>
+        <div class="cardlist__item">
           <h4>Feedback timing</h4>
           <p>The system only surfaced errors after a painful six-second reload, instead of catching them in the moment.</p>
-        </li>
-      </ol>
-      <p style="margin-top:24px;">Almost every decision in the redesign traces back to fixing one of these two failures.</p>
+        </div>
+      </div>
+      <div class="hl hl--lead" style="margin-top:24px;"><p>Almost every decision in the redesign traces back to fixing one of these two failures.</p></div>
     </div>
   </section>
 
@@ -224,21 +222,24 @@
 
       <span class="microlabel">The constraint as the lens</span>
       <p>The single biggest constraint was technical: the system could not persist progress across sessions. Supporting save-and-resume would have required rebuilding the backend from the ground up, far beyond this project's scope. So the design challenge was not whether the flow should be single-session; it was how to make a single-session flow feasible and forgiving. I designed around it three ways:</p>
-      <ul class="list">
-        <li>The Welcome popup front-loads requirements so users gather everything before starting.</li>
-        <li>Saved FTC and saved address lists minimize the chance a user has to stop, leave, and lose their session.</li>
-        <li>Free back-navigation and in-session editing mean a mistake on an earlier step is easy to fix rather than fatal. Within a session, users could freely move back and edit any prior step before submitting.</li>
-      </ul>
+      <div class="approach">
+        <span class="approach__label">How I designed around it</span>
+        <ul>
+          <li>The Welcome popup front-loads requirements so users gather everything before starting.</li>
+          <li>Saved FTC and saved address lists minimize the chance a user has to stop, leave, and lose their session.</li>
+          <li>Free back-navigation and in-session editing mean a mistake on an earlier step is easy to fix rather than fatal. Within a session, users could freely move back and edit any prior step before submitting.</li>
+        </ul>
+      </div>
 
       <span class="microlabel">How we worked</span>
       <p>The consolidation was not a solo exercise. Over several months, Enrique (business requirements), Sohail (CMS and data constraints), and I worked through every step on a shared Miro board: legacy screenshots, sticky-note debates over which fields to keep, cut, or merge, and multiple user states mapped per step. Each page went through several revisions before the structure settled. The annotated boards shown throughout this section are excerpts from that working process.</p>
 
       <span class="microlabel">Showing the math: 7 steps to 5</span>
       <p>Two consolidations drove the reduction, each removing a full page load on a six-second backend:</p>
-      <ul class="list">
-        <li>The static Welcome screen became a popup, preserving its guidance while removing a page load.</li>
-        <li>Brand selection and hang tag selection, previously two separate pages, merged into one Hang Tag Selection step.</li>
-      </ul>
+      <div class="optiongrid">
+        <div class="optiongrid__item"><span class="optiongrid__num">1</span><p>The static Welcome screen became a popup, preserving its guidance while removing a page load.</p></div>
+        <div class="optiongrid__item"><span class="optiongrid__num">2</span><p>Brand selection and hang tag selection, previously two separate pages, merged into one Hang Tag Selection step.</p></div>
+      </div>
       <p>The flow was also reordered to open with Fabric Details / FTC, the gating requirement for the entire order.</p>
 
       <!-- Step 0/1 -->
@@ -342,8 +343,7 @@
     </figure>
 
     <div class="wrap">
-      <span class="microlabel">Why it is better</span>
-      <p>One fewer page load. The make-or-break requirement (the FTC) is confronted first, so users without a code find out before investing effort. The dominant repeat user lands directly on the fastest path to their most common action. And progressive disclosure removes fields that don't apply to most users.</p>
+      <div class="hl"><span class="hl__label">Why it’s better</span><p>One fewer page load. The make-or-break requirement (the FTC) is confronted first, so users without a code find out before investing effort. The dominant repeat user lands directly on the fastest path to their most common action. And progressive disclosure removes fields that don't apply to most users.</p></div>
 
       <!-- Step 2 -->
       <h3 class="h3">Step 2 — Garment Details: structure, clarity &amp; a real data model</h3>
@@ -371,11 +371,10 @@
         <span class="note-label">Note</span>
         <p>The Garment Retail Region section here was a late addition requested by the Salesforce data team. See Reflection.</p>
       </div>
-      <span class="microlabel">Why it is better</span>
-      <p>Sectioning chunks a previously flat, dense screen into digestible groups. The icon selector is faster to scan than a dropdown (recognition over recall again). And the field dependency that confused three of four testers is now explicit in both copy and live behavior.</p>
+      <div class="hl"><span class="hl__label">Why it’s better</span><p>Sectioning chunks a previously flat, dense screen into digestible groups. The icon selector is faster to scan than a dropdown (recognition over recall again). And the field dependency that confused three of four testers is now explicit in both copy and live behavior.</p></div>
 
       <!-- Step 3 -->
-      <h3 class="h3">Step 3 — Shipping: only valid choices, ever</h3>
+      <h3 class="h3">Step 3 — Shipping: only valid choices</h3>
       <span class="microlabel">Legacy</span>
       <p>In testing, users made two kinds of shipping errors. Some selected “Free Shipping” alongside a paid carrier. Others selected free shipping when their address did not qualify, and only discovered the error after a reload. Both shared a root cause: the legacy screen showed every option at all times and used a checkbox for free shipping, so it could coexist with carrier selections.</p>
       <span class="microlabel">The thinking</span>
@@ -400,8 +399,7 @@
         <li>Shipping method became a single radio group, making “Standard Shipping (Free)” and a paid carrier mutually exclusive. Selecting both is no longer possible.</li>
         <li>“Standard Shipping (Free)” renders conditionally, appearing only when the address selected in Section 1 qualifies for free local delivery. Users with ineligible addresses never see the option, so they cannot select it and cannot get bounced back.</li>
       </ul>
-      <span class="microlabel">Why it is better</span>
-      <p>The errors my testers hit are not validated against after the fact; they are structurally impossible, because invalid choices are never presented. This is the strongest form of error prevention: making the bad state unreachable.</p>
+      <div class="hl"><span class="hl__label">Why it’s better</span><p>The errors my testers hit are not validated against after the fact; they are structurally impossible, because invalid choices are never presented. This is the strongest form of error prevention: making the bad state unreachable.</p></div>
 
       <!-- Step 4 -->
       <h3 class="h3">Step 4 — Hang Tag Selection: merging brand &amp; tag into one dependent step</h3>
@@ -425,8 +423,7 @@
     </figure>
 
     <div class="wrap">
-      <span class="microlabel">Why it is better</span>
-      <p>One fewer page load, and the cause-and-effect is now visible rather than hidden across a page break. This became the core logic for the entire flow: every choice a user makes conditionally shapes what they see next, and the UI makes that cause-and-effect obvious (FitSense to dispersion, address to free shipping, segment to product type, brand to hang tags, and the custom-tag passcode gate).</p>
+      <div class="hl"><span class="hl__label">Why it’s better</span><p>One fewer page load, and the cause-and-effect is now visible rather than hidden across a page break. This became the core logic for the entire flow: every choice a user makes conditionally shapes what they see next, and the UI makes that cause-and-effect obvious (FitSense to dispersion, address to free shipping, segment to product type, brand to hang tags, and the custom-tag passcode gate).</p></div>
 
       <!-- Step 5 / 6 -->
       <h3 class="h3">Step 5 — Review &amp; Validate, and Step 6 — Confirmation</h3>
@@ -478,8 +475,7 @@
     </figure>
 
     <div class="wrap">
-      <span class="microlabel">Why it is better</span>
-      <p>Shipping is legible at a glance, the order record lives on the page itself, next steps are clear and reassuring, and the embedded feedback module turned the final screen into an instrument for measuring the redesign's success.</p>
+      <div class="hl"><span class="hl__label">Why it’s better</span><p>Shipping is legible at a glance, the order record lives on the page itself, next steps are clear and reassuring, and the embedded feedback module turned the final screen into an instrument for measuring the redesign's success.</p></div>
     </div>
   </section>
 
@@ -497,7 +493,7 @@
   <section class="section">
     <div class="wrap">
       <p class="section-kicker">Outcome</p>
-      <p class="headline">In the end: a flow streamlined from <b>seven steps to five</b>, roughly <b>45% faster</b> to complete, and an <b>88% positive rating</b> across <b>623 real users</b>.</p>
+      <div class="hl"><p class="headline" style="margin:0">A flow streamlined from <b>seven steps to five</b>, roughly <b>45% faster</b> to complete, and an <b>88% positive rating</b> across <b>623 real users</b>.</p></div>
       <p>The redesigned flow launched in July 2024. I validated it three ways.</p>
 
       <h3 class="h3">1 · Task efficiency (directional)</h3>
@@ -587,12 +583,14 @@
 
 </div>
 
+
+
 <footer class="site-footer">
   <div class="site-footer__inner">
     <span class="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
     <nav class="site-footer__links">
       <a id="copyEmail">Copy email</a>
-      <a href="../case-study-2/index.html">View Resume</a>
+      <a href="../assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
     </nav>
   </div>
 </footer>
