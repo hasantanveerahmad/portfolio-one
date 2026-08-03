@@ -149,43 +149,46 @@ function App() {
 
       {/* HERO */}
       <section className="hero">
-        <span className="hero-eyebrow"><span className="eyebrow-dash"></span>Homepage</span>
+        <span className="hero-eyebrow">UX UI Designer</span>
         <h1>Hi, I'm Haas</h1>
         <p>My goal is to improve the systems we use today while thinking about how the world will look tomorrow. It starts by reducing friction in my everyday life — from optimizing my phone's home screen to arranging my bedroom. Each decision creates mental space that helps me build products and experiences that matter.</p>
         <div className="hero-actions">
-          <button className="connect" onClick={() => setConnectOpen(true)}>Connect</button>
-          <a className="btn-outline" href="assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
+          <a className="connect" href="assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
+          <button className="btn-outline" onClick={() => setConnectOpen(true)}>Connect</button>
         </div>
       </section>
 
       {/* PROJECTS */}
       <section className="projects" id="work">
-        <a className="card" href="order-hang-tags/index.html" style={cardStyle}>
-          <div className="card-thumb"><CapitalArt /></div>
+        <a className="card" href="case-study-2/index.html" style={cardStyle}>
+          <div className="card-thumb"><img src="assets/oht-card-thumb-v2.jpg" alt="LYCRA T400 hang tag on denim" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} /></div>
           <div className="card-body">
             <span className="chip">B2B PORTAL OPTIMIZATION</span>
             <h3 className="card-title">Order Hang Tags —<br />Refactor</h3>
-            <p className="card-desc">An end-to-end redesign that streamlines how branded garment manufacturers order LYCRA® branded hang tags.</p>
+            <p className="card-desc">An end-to-end redesign that streamlines how brands and garment manufacturers order LYCRA® branded hang tags.</p>
             <span className="case-link">View Case Study <span className="arrow">→</span></span>
           </div>
         </a>
 
         <a className="card" href="global-navigation/index.html" style={cardStyle}>
-          <div className="card-thumb"><LuminaArt /></div>
+          <div className="card-thumb"><img src="assets/gn-card-thumb-v2.jpg" alt="LYCRA global brand navigation footer" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'left center'}} /></div>
           <div className="card-body">
-            <span className="chip">LOREM IPSUM</span>
-            <h3 className="card-title">Global Navigation & Decoupling</h3>
-            <p className="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
+            <div style={{display:'flex',gap:'4px'}}>
+              <span className="chip">NAVIGATION</span>
+              <span className="chip">INFORMATION ARCHITECTURE</span>
+            </div>
+            <h3 className="card-title">Global Navigation &amp; Decoupling</h3>
+            <p className="card-desc">A three-phase redesign that transformed an overloaded multi-brand navigation into clear, independent brand experiences.</p>
             <span className="case-link">View Case Study <span className="arrow">→</span></span>
           </div>
         </a>
 
-        <a className="card" href="news-events/index.html" style={cardStyle}>
-          <div className="card-thumb"><NexusArt /></div>
+        <a className="card" href="eyes-forward/index.html" style={cardStyle}>
+          <div className="card-thumb"><img src="assets/ef-card-thumb.jpg" alt="Tesla driver display concept" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} /></div>
           <div className="card-body">
-            <span className="chip">LOREM IPSUM</span>
-            <h3 className="card-title">Product Listing Page Redesign</h3>
-            <p className="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
+            <span className="chip">DRIVER DISPLAY INTERFACE</span>
+            <h3 className="card-title">Eyes Forward —<br />Tesla Driver Display</h3>
+            <p className="card-desc">An instrument cluster designed to reduce visual travel and keep essential driving information closer to the road.</p>
             <span className="case-link">View Case Study <span className="arrow">→</span></span>
           </div>
         </a>
@@ -196,7 +199,7 @@ function App() {
       <section className="about" id="about">
           <div>
             <h2>About</h2>
-            <p>I am a designer with 5 years of UX/UI experience and a strong background in Industrial Design. Whether it's arranging grey boxes on a blank canvas, color coding vocal layers in my favorite music software or spacing out players on a basketball court, I'm always thinking about how individual elements interact with one another and where the friction lives. My work is about designing for how things work now, and how they'll need to work in the future. Because the world is always changing — now more than ever.</p>
+            <p style={{fontSize:'19.5px'}}>I am a designer with 5 years of UX/UI experience and a strong background in Industrial Design. Whether it's arranging grey boxes on a blank canvas, color coding vocal layers in my favorite music software or spacing out players on a basketball court, I'm always thinking about how individual elements interact with one another and where the friction lives. My work is about designing for how things work now, and how they'll need to work in the future. Because the world is always changing — now more than ever.</p>
           </div>
           <div className="portrait" aria-label="Portrait of Hasan Tanveer Ahmad">
             <img src="assets/portrait-new.png" alt="Portrait of Hasan Tanveer Ahmad" />
@@ -225,7 +228,7 @@ function App() {
         <span className="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
         <nav className="site-footer__links">
           <a href="#" onClick={copyEmail}>{emailCopied ? 'Copied ✓' : 'Copy email'}</a>
-          <a href="case-study-2/index.html">View Resume</a>
+          <a href="assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
         </nav>
       </div>
     </footer>
