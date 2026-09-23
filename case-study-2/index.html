@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="case-study.css" />
+<style id="quote-style">.quotes{gap:32px}.quote{background:none;border-radius:0;margin:0;padding:2px 0 2px 16px;border-left:3px solid #DDA082;display:block}.quote::before,.quote::after{content:none}.quote p{font-size:19px;font-weight:600;line-height:1.35;letter-spacing:-0.01em}</style>
 </head>
 <body>
 <div class="page">
@@ -156,8 +157,8 @@
       <h3 class="h3">The diagnosis</h3>
       <p>The legacy flow failed in 2 fundamental ways:</p>
       <div class="stackcard">
-        <div class="stackcard__item"><h4><span class="numbubble">1</span>State management</h4><p>Fields didn't communicate with each other, which let users make conflicting choices.</p></div>
-        <div class="stackcard__item"><h4><span class="numbubble">2</span>Feedback timing</h4><p>The system only surfaced errors after a painful six-second reload, instead of catching them in the moment.</p></div>
+        <div class="stackcard__item"><h4>1. State management</h4><p>Fields didn't communicate with each other, which let users make conflicting choices.</p></div>
+        <div class="stackcard__item"><h4>2. Feedback timing</h4><p>The system only surfaced errors after a painful six-second reload, instead of catching them in the moment.</p></div>
       </div>
     </div>
   </section>
@@ -337,14 +338,8 @@
 
     <figure class="fig fig-bleed" id="fig-12a" data-fig="12a">
       <span class="microlabel">Legacy</span>
-      <div class="fig__ph" style="aspect-ratio: 1687 / 842;">
-        <div class="fig__ph-inner">
-          <span class="fig__glyph"></span>
-          <div class="fig__tag">Figure 13</div>
-          <div class="fig__hint">Legacy Step 3 (Shipping)</div>
-        </div>
-      </div>
-      <figcaption class="figcap"><b>Figure 13.</b> Legacy Step 3 (Shipping).</figcaption>
+      <img class="fig__img" src="assets/fig-13-legacy-shipping.jpg" alt="Legacy Step 3 Shipping: saved addresses in expandable rows, a shipping method list, and a separate free-shipping checkbox." width="1440" height="2037" style="border-radius:12px" />
+      <figcaption class="figcap"><b>Figure 13.</b> Legacy Step 4</figcaption>
     </figure>
 
     <div class="stepdia__arrow" style="margin:48px 0 50px" aria-hidden="true">
@@ -353,14 +348,8 @@
 
     <figure class="fig fig-bleed" id="fig-12b" data-fig="12b">
       <span class="microlabel microlabel--redesign">Redesign</span>
-      <div class="fig__ph" style="aspect-ratio: 1687 / 842;">
-        <div class="fig__ph-inner">
-          <span class="fig__glyph"></span>
-          <div class="fig__tag">Figure 14</div>
-          <div class="fig__hint">Redesigned Step 3 (Shipping)</div>
-        </div>
-      </div>
-      <figcaption class="figcap"><b>Figure 14.</b> Redesigned Step 3 (Shipping), showing the single radio group and conditionally rendered free-shipping option.</figcaption>
+      <img class="fig__img" src="assets/fig-14-redesign-shipping.jpg" alt="Redesigned Step 3 Shipping: Section 1 address choice as a radio group with a saved-address list, and Section 2 shipping method as a single radio group including Standard Shipping (Free)." width="1920" height="1898" style="border-radius:12px" />
+      <figcaption class="figcap"><b>Figure 14.</b> Redesigned Step 3, conditionally rendered free-shipping option.</figcaption>
     </figure>
 
     <div class="wrap">
@@ -385,13 +374,7 @@
 
     <figure class="fig fig-bleed" id="fig-13a" data-fig="13a">
       <span class="microlabel">Legacy</span>
-      <div class="fig__ph" style="aspect-ratio: 1813 / 836;">
-        <div class="fig__ph-inner">
-          <span class="fig__glyph"></span>
-          <div class="fig__tag">Figure 15</div>
-          <div class="fig__hint">Legacy Brand Selection &amp; Hang Tag Selection</div>
-        </div>
-      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.9fr);gap:24px;align-items:start"><img class="fig__img" src="assets/fig-15a-legacy-brand.jpg" alt="Legacy Step 5 Brand Selection: three brand logos with checkboxes." width="1920" height="899" style="border-radius:12px" /><img class="fig__img" src="assets/fig-15b-legacy-hangtags.jpg" alt="Legacy Step 6 Hang Tag Selection: passcode field and a table of hang tag variants with quantity inputs." width="1600" height="1782" style="border-radius:12px" /></div>
       <figcaption class="figcap"><b>Figure 15.</b> Legacy Brand Selection and Hang Tag Selection, split across 2 separate pages.</figcaption>
     </figure>
 
@@ -401,13 +384,7 @@
 
     <figure class="fig fig-bleed" id="fig-13b" data-fig="13b">
       <span class="microlabel microlabel--redesign">Redesign</span>
-      <div class="fig__ph" style="aspect-ratio: 1813 / 836;">
-        <div class="fig__ph-inner">
-          <span class="fig__glyph"></span>
-          <div class="fig__tag">Figure 16</div>
-          <div class="fig__hint">Redesigned Step 4 (Hang Tag Selection)</div>
-        </div>
-      </div>
+      <img class="fig__img" src="assets/fig-16-redesign-hangtags.jpg" alt="Redesigned Step 4 Hang Tag Selection: Section 1 Select Brand with brand logos, and Section 2 Select Hang Tags with a table of tags for the chosen brand." width="1920" height="1887" style="border-radius:12px" />
       <figcaption class="figcap"><b>Figure 16.</b> Redesigned Step 4 — Select Brand and Select Hang Tags merged into 1 step, with tags populating from the brand chosen above.</figcaption>
     </figure>
 
@@ -426,13 +403,7 @@
 
     <figure class="fig fig-bleed" id="fig-14" data-fig="14">
       <span class="microlabel">Legacy</span>
-      <div class="fig__ph" style="aspect-ratio: 2046 / 1127;">
-        <div class="fig__ph-inner">
-          <span class="fig__glyph"></span>
-          <div class="fig__tag">Figure 17</div>
-          <div class="fig__hint">Legacy Review &amp; Confirmation (“print and mail”)</div>
-        </div>
-      </div>
+      <img class="fig__img" src="assets/fig-17-legacy-confirmation-v2.jpg" alt="Legacy confirmation page: thank-you message asking users to print the email and mail it with a fabric sample, followed by order summary sections." width="1440" height="1961" style="border-radius:12px" />
       <figcaption class="figcap"><b>Figure 17.</b> Legacy Review and Confirmation. The old confirmation told users to print and mail the email.</figcaption>
     </figure>
 
@@ -442,13 +413,7 @@
 
     <figure class="fig fig-bleed" id="fig-14b" data-fig="14b">
       <span class="microlabel microlabel--redesign">Redesign</span>
-      <div class="fig__ph" style="aspect-ratio: 2046 / 1127;">
-        <div class="fig__ph-inner">
-          <span class="fig__glyph"></span>
-          <div class="fig__tag">Figure 18</div>
-          <div class="fig__hint">Redesigned Review &amp; Confirmation</div>
-        </div>
-      </div>
+      <img class="fig__img" src="assets/fig-18-redesign-confirmation.jpg" alt="Redesigned confirmation page: order number, Next Steps block, hang tag selection summary, shipping details, and an optional feedback module." width="1440" height="2101" style="border-radius:12px" />
       <figcaption class="figcap"><b>Figure 18.</b> Redesigned Review and Confirmation — shipping visible on load, the full order record on the page, and a clear “Next Steps” block.</figcaption>
     </figure>
 
@@ -501,36 +466,28 @@
     <div class="wrap" style="margin-top:56px">
       <p>The redesigned flow launched in July 2024. I validated it 3 ways.</p>
 
-      <h3 class="h3">1 · Task efficiency (directional)</h3>
+      <h3 class="h3">Task efficiency (directional)</h3>
       <p>I re-ran the identical moderated protocol with the same 4 participants on the new flow. Average completion time dropped from 7:48 to 4:15, a reduction of roughly 45%. Just as importantly, they no longer got stuck on the friction points that had tripped them up on the legacy version. Same participants, same protocol, measured before and after. Small sample, so I treat the time figure as directional, but the direction was strong and the friction points were verifiably resolved.</p>
       <div class="note">
         <span class="note-label">Note on attribution</span>
-        <p>This reduction reflects 2 improvements landing together. The redesign cut the flow from 7 steps to 5 and optimized each step in the process, while the development team also optimized code to reduce page load times. I do not attribute the full reduction to design alone, but the structural simplification was a direct driver.</p>
+        <p>This reduction came from 2 changes landing together: the redesign cut the flow from 7 steps to 5, and engineering reduced page load times. The structural simplification was a direct driver, but not the only one.</p>
       </div>
 
-      <h3 class="h3">2 · User satisfaction (strong sample)</h3>
+      <h3 class="h3">User satisfaction (strong sample)</h3>
       <p>I built an optional feedback module into the post-submission confirmation page (Good / Neutral / Poor, plus an open comment), which the CI&amp;T team wired to a spreadsheet. Over 8 months it collected 623 responses: 548 Good, 58 Neutral, 17 Poor, which is 88% positive. Because the survey appeared after submission, respondents had all completed an order, so the sample is self-selected and skews positive, which I weigh when interpreting the result.</p>
     </div>
 
     <figure class="fig fig-bleed" id="fig-18" data-fig="18">
-      <span class="microlabel">Raw data</span>
-      <div class="fig__ph" style="aspect-ratio: 16 / 9;">
-        <div class="fig__ph-inner">
-          <span class="fig__glyph"></span>
-          <div class="fig__tag">Figure 19</div>
-          <div class="fig__hint">Feedback spreadsheet — raw responses &amp; ratings</div>
-        </div>
-      </div>
-      <figcaption class="figcap"><b>Figure 19.</b> The raw feedback data: every response the module collected, with each user's satisfaction rating and open comment.</figcaption>
+      <img class="fig__img" src="assets/fig-19-feedback-sheet-v3.jpg" alt="Feedback spreadsheet excerpt: first 40 responses with date, language, rating and comments." width="1200" height="675" style="border-radius:12px" /><div class="ratingbar" style="background:var(--card);border-radius:16px;padding:30px 32px 34px;margin-top:32px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:22px"><span style="font-weight:400;font-size:18px;color:var(--ink)"><b style="color:#16140F">623 responses</b> over 8 months</span><div style="display:flex;gap:24px;flex-wrap:wrap;font-size:16px;font-weight:500;color:var(--ink)"><span style="display:flex;align-items:center;gap:8px"><i style="width:10px;height:10px;border-radius:2px;background:#2E8B57"></i>Good · 88%</span><span style="display:flex;align-items:center;gap:8px"><i style="width:10px;height:10px;border-radius:2px;background:#B8B1A6"></i>Neutral · 9%</span><span style="display:flex;align-items:center;gap:8px"><i style="width:10px;height:10px;border-radius:2px;background:#cc2f2f"></i>Poor · 3%</span></div></div><div style="display:flex;height:14px;border-radius:7px;overflow:hidden;gap:2px" role="img" aria-label="548 Good, 58 Neutral, 17 Poor"><span style="flex:548;background:#2E8B57"></span><span style="flex:58;background:#B8B1A6"></span><span style="flex:17;background:#cc2f2f"></span></div></div>
     </figure>
 
     <div class="wrap" style="margin-top:56px">
-      <h3 class="h3">3 · Qualitative themes</h3>
-      <p>The open-text comments mapped directly onto what I redesigned: speed, simplicity, and the streamlined ordering process. The strongest comments:</p>
-      <div class="quotes">
-        <blockquote class="quote"><p>Fast, simple, and easy to use, a great experience.</p></blockquote>
-        <blockquote class="quote"><p>The new system is smooth, intuitive, and done in one go.</p></blockquote>
-        <blockquote class="quote"><p>The ease of ordering they implemented is fantastic.</p></blockquote>
+      <h3 class="h3">Qualitative themes</h3>
+      <p>User comments mapped directly onto what I redesigned for: speed and simplicity.</p>
+      <div class="quotes" style="background:var(--card);border-radius:16px;padding:28px 32px;gap:38px">
+        <blockquote class="quote"><p>“Fast, simple, and easy to use, a great experience.”</p></blockquote>
+        <blockquote class="quote"><p>“The new system is smooth, intuitive, and done in one go.”</p></blockquote>
+        <blockquote class="quote"><p>“The ease of ordering they implemented is fantastic.”</p></blockquote>
       </div>
       <p style="margin-top:24px;">Recurring positive themes across the open-text feedback:</p>
       <ul class="list">
@@ -541,8 +498,8 @@
         <li>Quick select-and-submit of hang tag details called out as a major plus.</li>
       </ul>
 
-      <h3 class="h3">Likely business impact</h3>
-      <p>I want to be careful here, because I did not have access to support-ticket or fulfillment data, so I cannot put a number on this. But it is worth stating the plausible business value. This was the portal's highest-volume flow, so cutting task time and making invalid or conflicting orders structurally impossible most likely reduced downstream load: fewer abandoned orders, fewer support contacts from stuck users, and fewer incorrectly specified tag orders reaching fulfillment. I am framing that as a reasonable expectation rather than a measured result, because the data to confirm it sat outside what I could see.</p>
+      <h3 class="h3">Business impact</h3>
+      <p>I didn’t have access to support-ticket or fulfillment data, so this isn’t a measured result. But as the portal’s highest-volume flow, faster task times and structurally impossible invalid orders likely reduced downstream load: fewer abandoned orders, fewer support contacts from stuck users, and fewer incorrectly specified tag orders reaching fulfillment.</p>
 
       <h3 class="h3">An honest read on the data</h3>
       <p>A satisfaction number that high is only trustworthy if you also show what people complained about, and separating the friction I owned from the friction I didn't is part of reading the data honestly. So I categorized every open-text complaint by theme and frequency, with a note on whether each falls inside my redesigned flow or in the broader portal.</p>
@@ -557,8 +514,6 @@
             <tr><td>Order modification &amp; form changes</td><td class="mentions">6</td><td><span class="resp partly">Partly mine</span></td></tr>
             <tr><td>Webpage performance</td><td class="mentions">6</td><td><span class="resp out">Outside my flow</span></td></tr>
             <tr><td>Address selection &amp; saved data</td><td class="mentions">5</td><td><span class="resp partly">Partly mine</span></td></tr>
-            <tr><td>Customer support responsiveness</td><td class="mentions">4</td><td><span class="resp out">Outside my flow</span></td></tr>
-            <tr><td>Limited language support</td><td class="mentions">2</td><td><span class="resp out">Outside my flow</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -570,8 +525,7 @@
   <!-- ============ REFLECTION ============ -->
   <section class="section section--airy">
     <div class="wrap">
-      <p class="section-kicker">Reflection &amp; next steps</p>
-      <h2 class="h2">What I'd carry forward</h2>
+      <h2 class="h2">Reflection &amp; Next Steps</h2>
 
       <h3 class="h3" style="font-size:17px;margin:52px 0 16px">Product next step</h3>
       <p>Within the flow, users could freely navigate back and edit any step before submitting. The “cannot edit after submission” feedback refers to modifying an order once it had already been submitted and entered processing, a post-submission order-management capability outside this flow's scope. It is the clearest candidate for future work: a way to amend or cancel a submitted order without contacting support.</p>
@@ -590,7 +544,7 @@
         </span>
         <span class="back-link__label" style="letter-spacing: 0.8px; font-weight: 500">Back to Homepage</span>
       </a>
-      <a class="back-link back-link--next" href="../global-navigation/index.html">
+      <a class="back-link back-link--next" href="../eyes-forward/index.html">
         <span class="back-link__label" style="letter-spacing: 0.8px">Next Project</span>
         <span class="back-link__icon" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -608,7 +562,7 @@
     <span class="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
     <nav class="site-footer__links">
       <a id="copyEmail">Copy email</a>
-      <a href="../assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
+      <a href="../assets/Hasan_Ahmad_Resume_v5.pdf" target="_blank" rel="noopener">View Resume</a>
     </nav>
   </div>
 </footer>

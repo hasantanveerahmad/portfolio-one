@@ -153,7 +153,7 @@ function App() {
         <h1>Hi, I'm Haas</h1>
         <p>My goal is to improve the systems we use today while thinking about how the world will look tomorrow. It starts by reducing friction in my everyday life — from optimizing my phone's home screen to arranging my bedroom. Each decision creates mental space that helps me build products and experiences that matter.</p>
         <div className="hero-actions">
-          <a className="connect" href="assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
+          <a className="connect" href="assets/Hasan_Ahmad_Resume_v5.pdf" target="_blank" rel="noopener">View Resume</a>
           <button className="btn-outline" onClick={() => setConnectOpen(true)}>Connect</button>
         </div>
       </section>
@@ -170,6 +170,16 @@ function App() {
           </div>
         </a>
 
+        <a className="card" href="eyes-forward/index.html" style={cardStyle}>
+          <div className="card-thumb"><img src="assets/ef-card-thumb-v4.jpg" alt="Tesla driver display concept" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} /></div>
+          <div className="card-body">
+            <span className="chip">DRIVER DISPLAY INTERFACE</span>
+            <h3 className="card-title">Eyes Forward —<br />Tesla Driver Display</h3>
+            <p className="card-desc">An instrument cluster designed to reduce visual travel and keep essential driving information closer to the road.</p>
+            <span className="case-link">View Case Study <span className="arrow">→</span></span>
+          </div>
+        </a>
+
         <a className="card" href="global-navigation/index.html" style={cardStyle}>
           <div className="card-thumb"><img src="assets/gn-card-thumb-v2.jpg" alt="LYCRA global brand navigation footer" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'left center'}} /></div>
           <div className="card-body">
@@ -179,16 +189,6 @@ function App() {
             </div>
             <h3 className="card-title">Global Navigation &amp; Decoupling</h3>
             <p className="card-desc">A three-phase redesign that transformed an overloaded multi-brand navigation into clear, independent brand experiences.</p>
-            <span className="case-link">View Case Study <span className="arrow">→</span></span>
-          </div>
-        </a>
-
-        <a className="card" href="eyes-forward/index.html" style={cardStyle}>
-          <div className="card-thumb"><img src="assets/ef-card-thumb.jpg" alt="Tesla driver display concept" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} /></div>
-          <div className="card-body">
-            <span className="chip">DRIVER DISPLAY INTERFACE</span>
-            <h3 className="card-title">Eyes Forward —<br />Tesla Driver Display</h3>
-            <p className="card-desc">An instrument cluster designed to reduce visual travel and keep essential driving information closer to the road.</p>
             <span className="case-link">View Case Study <span className="arrow">→</span></span>
           </div>
         </a>
@@ -228,7 +228,7 @@ function App() {
         <span className="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
         <nav className="site-footer__links">
           <a href="#" onClick={copyEmail}>{emailCopied ? 'Copied ✓' : 'Copy email'}</a>
-          <a href="assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
+          <a href="assets/Hasan_Ahmad_Resume_v5.pdf" target="_blank" rel="noopener">View Resume</a>
         </nav>
       </div>
     </footer>

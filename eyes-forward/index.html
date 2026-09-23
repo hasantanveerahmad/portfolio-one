@@ -3,246 +3,304 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Eyes Forward — Tesla Driver Display — Hasan Tanveer Ahmad</title>
+<title>Eyes Forward — Tesla Driver Display · Hasan Tanveer Ahmad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../case-study-2/case-study.css" />
 <style>
-  :root {
-    --bg: #F8F5F0;
-    --ink: #16140F;
-    --ink-2: #2A2823;
-    --muted: #615D54;
-    --line: #E7E3DC;
-    --chip: #F0EDE6;
-    --accent: #E2622F;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Inter', system-ui, -apple-system, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    min-height: 100vh;
-  }
-  .page {
-    max-width: 1024px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 28px 64px 56px;
-    }
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 0 22px;
-  }
-  .brand {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--ink);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color .15s ease;
-  }
-  .back-link__icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: currentColor; }
-  .back-link:hover { color: var(--accent); }
-  .back-link--next .back-link__label { padding-left: 4px; }
-  .back-link:not(.back-link--next) .back-link__label { padding-right: 4px; }
-  .page-nav { margin-top: 72px; }
-  .page-nav-inner { display: flex; align-items: center; justify-content: space-between; }
-
-  .stage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 80px 0 40px;
-    gap: 24px;
-  }
-  .chip {
-    display: inline-block;
-    background: var(--chip);
-    color: var(--ink-2);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    padding: 6px 10px;
-    border-radius: 999px;
-    text-transform: uppercase;
-  }
-  h1 {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 800;
-    font-size: 52px;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin: 0;
-    max-width: 960px;
-  }
-  .teaser {
-    color: var(--muted);
-    font-size: 24px;
-    line-height: 1.55;
-    max-width: 960px;
-    margin: 0;
-  }
-  .status {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-top: 8px;
-  }
-  .dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-@media (max-width: 720px) {
-    .page { padding: 24px 24px 40px; }
-    h1 { font-size: 44px; }
-    .stage { padding: 48px 0 32px; }
-  }
-
-  /* ---------- Footer (matches homepage) ---------- */
-  .site-footer {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    border-top: 0;
-    padding: 32px 0;
-    background: #FFFFFF;
-  }
-  .site-footer__inner {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-  .site-footer__copy {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .site-footer__links {
-    display: flex;
-    gap: 44px;
-  }
-  .site-footer__links a {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color .15s ease;
-  }
-  .site-footer__links a:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  @media (max-width: 640px) {
-    .site-footer__inner {
-      flex-direction: column;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 0 clamp(16px, 5vw, 28px);
-    }
-    .site-footer__links {
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-  }
-
+a{color:var(--accent)}a:hover{color:var(--accent-2)}
+.quotes{gap:38px;background:var(--card);border-radius:16px;padding:28px 32px}
+.quote{background:none;border-radius:0;margin:0;padding:2px 0 2px 16px;border-left:3px solid #DDA082;display:block}
+.quote::before,.quote::after{content:none}
+.quote p{font-size:19px;font-weight:600;line-height:1.35;letter-spacing:-0.01em}
+.cite{font-size:13.5px;line-height:1.5;color:var(--muted);margin:14px 0 0}
+.fig__ph-inner .fig__hint{font-variant-numeric:tabular-nums}
+.tier{background:var(--card);border-radius:16px;padding:22px 32px 28px}
+.tier+.tier{margin-top:24px}
+.tier .list{margin-bottom:0}
+.tier .list li:last-child{margin-bottom:0}
+.tier .microlabel{margin:0 0 6px}
+.tier h3.h3{margin:0 0 8px}
+.tier .list li{margin-bottom:6px}
+.tier h3.h3+p{margin-bottom:14px}
+.list--num{counter-reset:q}
+.list--num li{counter-increment:q}
+.list--num li::before{content:counter(q) ".";background:none;width:auto;height:auto;border-radius:0;top:0;left:0;color:var(--ink-2);font-weight:600;font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
-  <div class="page">
-    <nav class="nav">
+<div class="page">
+  <nav class="nav">
+    <div class="nav-inner">
       <a class="back-link" href="../index.html">
-        <span class="back-link__icon" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
-        </span>
+        <span class="back-link__icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg></span>
+        <span class="back-link__label" style="letter-spacing: 0.8px">Back to Homepage</span>
+      </a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <h1 style="font-size: 52px">Eyes Forward</h1>
+      <p class="deck" style="font-weight: 400; line-height: 1.5; color: #66625B; font-size: 24px">A compact Tesla driver display that brings essential driving information into the driver's line of sight.</p>
+      <figure class="fig herofig fig-bleed" style="margin-bottom:56px">
+        <img class="fig__img" src="assets/ef-hero.jpg" alt="Eyes Forward driver display behind a Tesla steering wheel at night" width="1560" height="798" />
+      </figure>
+    </div>
+  </header>
+
+  <section class="section" style="border-top:1px solid var(--line);width:calc(100vw - 48px);max-width:960px;margin-left:50%;transform:translateX(-50%)">
+    <div class="wrap" style="max-width:960px">
+      <h2 class="h2">Overview</h2>
+      <p>Eyes Forward explores what a first-party Tesla driver display could be. I researched how Tesla drivers use the center screen, tested a forward navigation setup in real cars, and used those findings to determine what information belongs directly in front of the driver.</p>
+      <div class="meta" style="margin:32px 0 0">
+        <div class="meta__item">
+          <span class="meta__label">My Role</span>
+          <p class="meta__title" style="font-size: 15px">Sole Designer</p>
+          <div class="meta__body"><p>Research, UX/UI, prototyping, visual design</p></div>
+        </div>
+        <div class="meta__item">
+          <span class="meta__label">Timeline</span>
+          <p class="meta__title" style="font-size: 15px">June – September 2026</p>
+        </div>
+        <div class="meta__item">
+          <span class="meta__label">Methods</span>
+          <p class="meta__title" style="font-size: 15px; font-weight: 400">Peer reviewed research, interviews, in-car placement testing</p>
+        </div>
+        <div class="meta__item">
+          <span class="meta__label">Participants</span>
+          <p class="meta__title" style="font-size: 15px">5 Tesla drivers</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap" style="max-width:960px;width:calc(100vw - 48px);margin-left:50%;transform:translateX(-50%)">
+      <p class="section-kicker">The problem</p>
+      <h2 class="h2">Tesla’s Minimal Cabin</h2>
+    </div>
+    <figure class="fig fig-bleed" style="margin-top:28px">
+      <img class="fig__img" src="assets/ef-cabin-diagram.jpg" alt="Tesla cabin diagram: driver information and navigation &amp; infotainment share the center screen" width="1523" height="960" />
+    </figure>
+    <div class="wrap">
+      <h3 class="h3">The Advantage</h3>
+      <p>Tesla’s center screen creates a clean cabin, consolidates controls and removes much of the visual clutter found in conventional car interiors</p>
+      <h3 class="h3">The Tradeoff</h3>
+      <p>Frequently checked driving information, including speed, speed limit, navigation, and safety alerts, sits outside the driver’s forward line of sight.</p>
+      <h3 class="h3">Repeated Friction</h3>
+      <p>Tesla already groups driver-critical information closest to the driver, but that information still lives on the center display rather than directly in front of the driver. Each glance is brief, but those glances repeat throughout a drive, creating unnecessary visual and cognitive effort.</p>
+      <p>The opportunity was to move the <strong>highest priority information closer to the road</strong> without recreating the visual density of a traditional instrument cluster.</p>
+      <h3 class="h3">Existing aftermarket solutions</h3>
+      <p>The number of aftermarket driver displays suggests clear demand for driver-facing information, but these products also highlight the limitations of adding a separate system. <strong>Current aftermarket driver displays cannot integrate with Tesla’s native navigation.</strong> As a result, third-party displays cannot show Tesla’s native turn-by-turn guidance, forcing navigation to remain on the center screen.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap" style="max-width:960px;width:calc(100vw - 48px);margin-left:50%;transform:translateX(-50%)">
+      <p class="section-kicker">Research</p>
+      <h2 class="h2">How Placement Affects Glance Effort</h2>
+    </div>
+    <figure class="fig fig-bleed" style="margin-top:28px">
+      <img class="fig__img" src="assets/ef-gaze-diagram-v2.jpg" alt="Gaze eccentricity diagram: a shorter gaze shift from the driver to a driver display near the road versus a longer shift to the center display" width="1920" height="960" />
+    </figure>
+    <div class="wrap">
+      <h3 class="h3">Gaze Eccentricity</h3>
+      <p>This means how far a driver's gaze moves away from the forward road. Across my research, I found that visual detection becomes more difficult as information moves farther from the driver’s forward field of view. <strong>The goal was</strong> not to eliminate every glance away from the road, but <strong>to reduce how far the driver needs to look</strong> for frequently referenced information.</p>
+      <p class="cite">Summala, Lamble &amp; Laakso (1998), <em>Accident Analysis &amp; Prevention</em> 30(4), 401-407. Lamble, Laakso &amp; Summala (1999), <em>Ergonomics</em> 42(6), 807-815. Wittmann et al. (2006), Applied Ergonomics 37(2), 187-199.</p>
+      <div style="background:var(--card);border-radius:16px;padding:28px 32px;margin-top:40px">
+        <h3 class="h3" style="margin:0 0 10px">Thesis</h3>
+        <p style="margin:0">Frequently referenced driving information should stay as close to the driver's forward visual field as possible.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="h2">Interviews &amp; Testing</h2>
+      <p>I interviewed <strong>5 Tesla drivers</strong> with different levels of FSD (Full Self Driving) usage to understand how they interact with the center screen during everyday driving.</p>
+      <div style="background:var(--card);border-radius:16px;padding:28px 32px;margin-top:40px">
+        <h3 class="h3" style="margin:0 0 14px">Questions</h3>
+        <ol class="list list--num" style="margin-bottom:0">
+          <li>What information is most important for you to see while driving?</li>
+          <li>When you look at the center screen, what information are you looking for?</li>
+          <li>How often do you use Tesla's built-in navigation?</li>
+          <li>How often do you use FSD?</li>
+          <li style="margin-bottom:0">How do you know when FSD makes a mistake and you need to take over the vehicle?</li>
+        </ol>
+      </div>
+      <h3 class="h3">Testing Placement First</h3>
+      <p>After answering interview questions, each participant drove their own Tesla with a smartphone mounted behind the wheel. Google Maps was set to the same destination as Tesla's built-in navigation, giving participants turn-by-turn guidance directly in front of them while driving normally to an unfamiliar location.</p>
+      <p>The phone did not represent the final interface, but it was a quick way to test one thing: <strong>What does it feel like to have frequently referenced information behind the wheel?</strong></p>
+    </div>
+    <div class="fig-row fig-bleed" style="grid-template-columns:1fr;max-width:720px;gap:20px">
+      <figure class="fig"><img class="fig__img" src="assets/ef-phone-test-1d.jpg" style="aspect-ratio:16/9;object-fit:cover" alt="Phone running Google Maps mounted behind a Tesla steering wheel" width="1200" height="675" /></figure>
+      <figure class="fig"><img class="fig__img" src="assets/ef-phone-test-2.jpg" style="aspect-ratio:16/9;object-fit:cover;object-position:center top" alt="Participant driving with turn-by-turn navigation on a phone behind the wheel" width="1200" height="800" /></figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="h2">Findings</h2>
+      <p>Participants unanimously described the <strong>placement</strong> of forward display as more comfortable to reference. It’s not that the Tesla center display was not showing the information they needed. The benefit of the driver display comes from <strong>reducing the repeated eye and head movement</strong> required to retrieve basic information throughout the drive.</p>
+      <div class="quotes">
+        <blockquote class="quote"><p>“It’s about the line of sight. For comfort, having it in front is much better.”</p></blockquote>
+        <blockquote class="quote"><p>“Much easier to see. A quick glance, you don’t have to turn your head.”</p></blockquote>
+        <blockquote class="quote"><p>“The navigation interface is nice, but it’s way too far”</p></blockquote>
+      </div>
+      <h3 class="h3">Information Set</h3>
+      <p>Drivers did not want another display showing the same information (as the center display). They wanted a specific set of information placed more deliberately. <strong>Speedometer</strong>, speed limit, <strong>navigation</strong> guidance, and <strong>remaining range</strong> came up most consistently. Navigation was especially important to the majority of drivers. Participants described using it frequently, even on familiar routes.</p>
+      <div class="quotes">
+        <blockquote class="quote"><p>“The most important thing is really the navigation, and then your speed.”</p></blockquote>
+        <blockquote class="quote"><p>“Speed, directions, miles remaining, time, ETA.”</p></blockquote>
+      </div>
+      <h3 class="h3">FSD Visualization (What the Car Sees)</h3>
+      <p>Participants rarely relied on Tesla's full FSD visualization (presented on center display) when deciding whether to take control of the car. They almost always recognized mistakes through the behavior of the vehicle itself, such as unexpected braking, hesitation, or choosing the wrong path.</p>
+      <div class="quotes">
+        <blockquote class="quote"><p>“There’s no decision I need to make from it. It’s just a nice thing to look at.”</p></blockquote>
+        <blockquote class="quote"><p>“Yeah, I don’t really need to see that 3D stuff at all… maybe it can go in the corner but smaller”</p></blockquote>
+      </div>
+      <h3 class="h3">FSD Active (Who is driving?)</h3>
+      <p>Two participants emphasized that they would like one question to be more obvious: <strong>Is FSD on right now?</strong> Who is controlling the vehicle?</p>
+      <div class="quotes">
+        <blockquote class="quote"><p>“It should be a bit more obvious (who is in control).”</p></blockquote>
+        <blockquote class="quote"><p>“There is not a single piece of information that is more critical.”</p></blockquote>
+      </div>
+      <h3 class="h3">Role of Center Display</h3>
+      <p>Because glance-critical information was now being displayed behind the steering wheel, it no longer needed to permanently occupy a large portion of the center display. That space could instead be dedicated to navigation, media, climate controls, and other touchscreen interactions.</p>
+      <div class="quotes">
+        <blockquote class="quote"><p>“Now this big screen can be used for something else.”</p></blockquote>
+        <blockquote class="quote"><p>“In fact, this main display can actually become more useful now.”</p></blockquote>
+      </div>
+      <div style="background:var(--card);border-radius:16px;padding:28px 32px;margin-top:40px">
+        <h3 class="h3" style="margin:0 0 10px">Design Principle</h3>
+        <p style="margin:0">Keep glance-critical information in the driver's line of sight and leave secondary information/controls to the center display.</p>
+      </div>
+      <h3 class="h3">Why not just use a phone mount?</h3>
+      <p>The opportunity was not simply to add another screen. It was to create one cohesive interface across two displays. The phone demonstrated what navigation could feel like directly in front of the driver, but it remained a separate system. A native display could share the same navigation session as the center screen, eliminating duplicate destination entry while also showing range, FSD state, vehicle alerts, and other real-time information.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="h2">Information Hierarchy</h2>
+      <p>I carefully studied what information was available to users via the native Tesla center display and organized that information into 3 levels of priority.</p>
+      <div class="tier" style="margin-top:24px">
+        <span class="microlabel">Tier 1</span>
+        <h3 class="h3">Glance-Critical</h3>
+        <p>What do I need for immediate driving decisions?</p>
+        <ul class="list">
+          <li>Speed</li>
+          <li>Speed limit</li>
+          <li>Navigation maneuver + distance</li>
+          <li>Remaining range</li>
+          <li>FSD state</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <span class="microlabel">Tier 2</span>
+        <h3 class="h3">Contextual</h3>
+        <p>What is the current status of my vehicle or trip?</p>
+        <ul class="list">
+          <li>Telltale icons (seatbelt, tire pressure)</li>
+          <li>Drive mode</li>
+          <li>Turn signals</li>
+          <li>Current time</li>
+          <li>ETA</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <span class="microlabel">Tier 3</span>
+        <h3 class="h3">Secondary</h3>
+        <p>What else might be useful?</p>
+        <ul class="list" style="margin-bottom:0">
+          <li>Weather</li>
+          <li>Now playing (media)</li>
+          <li>Regen braking</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="section-kicker">Iteration</p>
+      <h2 class="h2">Exploring the Layout</h2>
+      <p>I explored different ways to arrange the same core information across the display. I tested the placement of <strong>navigation, speed, ETA, range,</strong> and <strong>vehicle status,</strong> looking for a layout that kept glance-critical information easy to scan.</p>
+      <p>Across these studies, the direction became more clear. The most successful layouts gave the <strong>map ample space</strong> and <strong>grouped Tier 1 Information</strong>, giving it the strongest visual priority.</p>
+    </div>
+    <div class="fig-row fig-bleed" style="row-gap:28px;background:var(--card);border-radius:18px;padding:32px 28px 36px">
+      <figure class="fig"><img class="fig__img" src="assets/ef-layout-1.png" style="border-radius:12px" alt="Layout study 1" width="1200" height="492" /></figure>
+      <figure class="fig"><img class="fig__img" src="assets/ef-layout-2.png" style="border-radius:12px" alt="Layout study 2" width="1200" height="492" /></figure>
+      <figure class="fig"><img class="fig__img" src="assets/ef-layout-3.png" style="border-radius:12px" alt="Layout study 3" width="1200" height="492" /></figure>
+      <figure class="fig"><img class="fig__img" src="assets/ef-layout-4.png" style="border-radius:12px" alt="Layout study 4" width="1200" height="492" /></figure>
+      <figure class="fig"><img class="fig__img" src="assets/ef-layout-5.png" alt="Layout study 5" width="1200" height="492" style="border-radius:12px" /></figure>
+      <figure class="fig"><img class="fig__img" src="assets/ef-layout-6.png" alt="Layout study 6" width="1200" height="492" style="border-radius:12px" /></figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="h2">Final Driver Display</h2>
+      <p>The final concept keeps the driver's most frequent questions visible at a glance: How fast am I going? What's my next maneuver? And when do I need to make it? Supporting information stays present but secondary.</p>
+      <h3 class="h3" style="margin-top:28px">Key Decisions</h3>
+      <ul class="list" style="margin-bottom:0">
+        <li><strong>Next maneuver:</strong> positioned high and to the left, grouped with speed.</li>
+        <li><strong>Speed/ speed limit:</strong> large and present, enough contrast to be able to read instantly</li>
+        <li><strong>ETA &amp; trip info:</strong> secondary information. Grouped with current time and range.</li>
+        <li><strong>Map treatment:</strong> simplified and visually quiet. High contrast between grey scale and vibrant blue/ red.</li>
+      </ul>
+    </div>
+    <figure class="fig fig-bleed">
+      <img class="fig__img" src="assets/ef-final.png" alt="Final Eyes Forward driver display" width="1920" height="720" />
+    </figure>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="h2">Reflection</h2>
+      <p>The study helped me discover that <strong>drivers didn’t want more information</strong> in front of them. They wanted a more <strong>focused set of information</strong> made easier to access. The value of the concept came less from adding extra screen area and more from distributing information more intentionally.</p>
+      <p>By giving critical driving information a dedicated place behind the wheel, the driver display also allows the center display to serve a clearer purpose.</p>
+      <p>The strongest case for a native Tesla driver display is not that it can show everything from the center display, but that it <strong>allows both displays</strong> to be used in a <strong>more purposeful</strong> role, creating a more comfortable and complete driving experience.</p>
+    </div>
+  </section>
+
+  <nav class="page-nav">
+    <div class="page-nav-inner">
+      <a class="back-link" href="../index.html">
+        <span class="back-link__icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg></span>
         <span class="back-link__label">Back to Homepage</span>
       </a>
-    </nav>
+      <a class="back-link back-link--next" href="../global-navigation/index.html">
+        <span class="back-link__label">Next Project</span>
+        <span class="back-link__icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg></span>
+      </a>
+    </div>
+  </nav>
+</div>
 
-    <main class="stage">
-      <h1>Eyes Forward — Tesla Driver Display</h1>
-      <p class="teaser">A compact, first-party instrument cluster designed to reduce visual travel and mental effort by keeping essential driving information closer to the road.</p>
-      <div class="status"><span class="dot"></span> Case study coming soon</div>
-    </main>
-    <nav class="page-nav">
-      <div class="page-nav-inner">
-        <a class="back-link" href="../index.html">
-          <span class="back-link__icon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
-          </span>
-          <span class="back-link__label">Back to Homepage</span>
-        </a>
-        <a class="back-link back-link--next" href="../case-study-2/index.html">
-          <span class="back-link__label">Next Project</span>
-          <span class="back-link__icon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-          </span>
-        </a>
-      </div>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <span class="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
+    <nav class="site-footer__links">
+      <a id="copyEmail" href="#">Copy email</a>
+      <a href="../assets/Hasan_Ahmad_Resume_v5.pdf" target="_blank" rel="noopener">View Resume</a>
     </nav>
   </div>
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <span class="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
-        <nav class="site-footer__links">
-          <a id="copyEmail" href="#">Copy email</a>
-          <a href="../assets/Hasan_Ahmad_Resume_v4.pdf" target="_blank" rel="noopener">View Resume</a>
-        </nav>
-      </div>
-    </footer>
+</footer>
 <script>
-  (function () {
-    var link = document.getElementById('copyEmail');
-    if (!link) return;
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      var email = 'hasantanveerahmad@gmail.com';
-      var done = function () {
-        var prev = link.textContent;
-        link.textContent = 'Copied ✓';
-        setTimeout(function () { link.textContent = prev; }, 1600);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(done).catch(done);
-      } else { done(); }
-    });
-  })();
+(function () {
+  var link = document.getElementById('copyEmail');
+  if (!link) return;
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    var email = 'hasantanveerahmad@gmail.com';
+    var done = function () { var prev = link.textContent; link.textContent = 'Copied ✓'; setTimeout(function () { link.textContent = prev; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(email).then(done).catch(done); } else { done(); }
+  });
+})();
 </script>
 </body>
 </html>
