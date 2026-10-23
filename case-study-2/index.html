@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="case-study.css" />
-<style id="quote-style">.quotes{gap:32px}.quote{background:none;border-radius:0;margin:0;padding:2px 0 2px 16px;border-left:3px solid #DDA082;display:block}.quote::before,.quote::after{content:none}.quote p{font-size:19px;font-weight:600;line-height:1.35;letter-spacing:-0.01em}</style>
 </head>
 <body>
 <div class="page">
@@ -20,7 +19,7 @@
         <span class="back-link__icon" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
         </span>
-        <span class="back-link__label" style="letter-spacing: 0.8px">Back to Homepage</span>
+        <span class="back-link__label">Back to Homepage</span>
       </a>
     </div>
   </nav>
@@ -40,46 +39,35 @@
   <!-- ============ OVERVIEW ============ -->
   <section class="section" style="border-top:1px solid var(--line);width:calc(100vw - 48px);max-width:960px;margin-left:50%;transform:translateX(-50%)">
     <div class="wrap" style="max-width:960px">
-      <h2 class="h2" style="margin-bottom:26px">Overview</h2>
-      <div class="meta" style="margin:0">
+      <h2 class="h2">Overview</h2>
+      <div class="meta meta--3" style="margin:26px 0 0">
         <div class="meta__item">
           <span class="meta__label" style="letter-spacing: 0.7px">My Role</span>
           <p class="meta__title" style="font-size: 15px">Sole UX/UI Designer</p>
+          <div class="meta__body"><p>Original IA, interaction, and visual design</p></div>
+        </div>
+        <div class="meta__item">
+          <span class="meta__label">Team</span>
           <div class="meta__body">
-            <p>Original IA, interaction, and visual design</p>
+            <p><strong>PM</strong> — Project requirements and process rules</p>
+            <p><strong>CMS Lead</strong> — Legacy audit and input-field architecture</p>
+            <p><strong>CI&amp;T</strong> — Development team, Brazil</p>
           </div>
         </div>
         <div class="meta__item">
           <span class="meta__label">Platform</span>
           <p class="meta__title" style="font-size: 15px">LYCRA ONE™ portal</p>
-          <div class="meta__body">
-            <p>B2B, web — desktop and mobile</p>
-          </div>
+          <div class="meta__body"><p>B2B, web — desktop and mobile</p></div>
         </div>
-        <div class="meta__item">
-          <span class="meta__label">Team</span>
-          <div class="meta__body">
-            <p><strong>Enrique Hurtado</strong> — PM, project requirements and process rules</p>
-            <p><strong>Sohail Yousuf</strong> — CMS lead, legacy audit and input-field architecture</p>
-            <p><strong>CI&amp;T</strong> — Development team, Brazil</p>
-          </div>
-        </div>
-        <div class="meta__item">
-          <span class="meta__label">Timeline</span>
-          <p class="meta__title" style="font-size: 15px">February 2024 – March 2025</p>
-          <div class="meta__body">
-            <p>Discovery and design: Feb 2024 – Jul 2024</p>
-            <p>Launch: July 2024</p>
-            <p>Measurement and synthesis: Jul 2024 – Mar 2025</p>
-          </div>
-        </div>
-        <div class="meta__item">
-          <span class="meta__label">Tools</span>
-          <div class="meta__body">
-            <p><strong>Miro</strong> — legacy benchmarking, friction mapping, mid-fidelity exploration</p>
-            <p><strong>Figma</strong> — high-fidelity design, developer handoff</p>
-          </div>
-        </div>
+      </div>
+      <div class="timeline">
+        <h3 class="h3" style="margin:0 0 10px">Timeline</h3>
+        <p style="margin:0">This project ran from February 2024 – March 2025 and took a three-phase approach.</p>
+      </div>
+      <div class="phases">
+        <div class="phase"><span class="phase__label">Discovery &amp; design</span><p class="phase__date">Feb – Jul 2024</p><p>Testing of the legacy flow, months of step-by-step revisions shared with PM and CMS Lead.</p></div>
+        <div class="phase"><span class="phase__label">Launch</span><p class="phase__date">Jul 2024</p><p>The 5-step flow shipped, with a feedback module built into the confirmation page.</p></div>
+        <div class="phase"><span class="phase__label">Measurement &amp; synthesis</span><p class="phase__date">Jul 2024 – Mar 2025</p><p>Collected over 623 responses from real users over 8 months.</p></div>
       </div>
     </div>
   </section>
@@ -484,7 +472,7 @@
     <div class="wrap" style="margin-top:56px">
       <h3 class="h3">Qualitative themes</h3>
       <p>User comments mapped directly onto what I redesigned for: speed and simplicity.</p>
-      <div class="quotes" style="background:var(--card);border-radius:16px;padding:28px 32px;gap:38px">
+      <div class="quotes">
         <blockquote class="quote"><p>“Fast, simple, and easy to use, a great experience.”</p></blockquote>
         <blockquote class="quote"><p>“The new system is smooth, intuitive, and done in one go.”</p></blockquote>
         <blockquote class="quote"><p>“The ease of ordering they implemented is fantastic.”</p></blockquote>
@@ -545,7 +533,7 @@
         <span class="back-link__label" style="letter-spacing: 0.8px; font-weight: 500">Back to Homepage</span>
       </a>
       <a class="back-link back-link--next" href="../eyes-forward/index.html">
-        <span class="back-link__label" style="letter-spacing: 0.8px">Next Project</span>
+        <span class="back-link__label">Next Project</span>
         <span class="back-link__icon" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
         </span>
@@ -562,7 +550,7 @@
     <span class="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
     <nav class="site-footer__links">
       <a id="copyEmail">Copy email</a>
-      <a href="../assets/Hasan_Ahmad_Resume_v5.pdf" target="_blank" rel="noopener">View Resume</a>
+      <a href="../assets/Hasan_Ahmad_Resume_v6.pdf" target="_blank" rel="noopener">View Resume</a>
     </nav>
   </div>
 </footer>

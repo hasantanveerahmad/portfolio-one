@@ -153,7 +153,7 @@ function App() {
         <h1>Hi, I'm Haas</h1>
         <p>My goal is to improve the systems we use today while thinking about how the world will look tomorrow. It starts by reducing friction in my everyday life — from optimizing my phone's home screen to arranging my bedroom. Each decision creates mental space that helps me build products and experiences that matter.</p>
         <div className="hero-actions">
-          <a className="connect" href="assets/Hasan_Ahmad_Resume_v5.pdf" target="_blank" rel="noopener">View Resume</a>
+          <a className="connect" href="assets/Hasan_Ahmad_Resume_v6.pdf" target="_blank" rel="noopener">View Resume</a>
           <button className="btn-outline" onClick={() => setConnectOpen(true)}>Connect</button>
         </div>
       </section>
@@ -183,7 +183,7 @@ function App() {
         <a className="card" href="global-navigation/index.html" style={cardStyle}>
           <div className="card-thumb"><img src="assets/gn-card-thumb-v2.jpg" alt="LYCRA global brand navigation footer" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'left center'}} /></div>
           <div className="card-body">
-            <div style={{display:'flex',gap:'4px'}}>
+            <div style={{display:'flex',gap:'6px'}}>
               <span className="chip">NAVIGATION</span>
               <span className="chip">INFORMATION ARCHITECTURE</span>
             </div>
@@ -228,7 +228,7 @@ function App() {
         <span className="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
         <nav className="site-footer__links">
           <a href="#" onClick={copyEmail}>{emailCopied ? 'Copied ✓' : 'Copy email'}</a>
-          <a href="assets/Hasan_Ahmad_Resume_v5.pdf" target="_blank" rel="noopener">View Resume</a>
+          <a href="assets/Hasan_Ahmad_Resume_v6.pdf" target="_blank" rel="noopener">View Resume</a>
         </nav>
       </div>
     </footer>

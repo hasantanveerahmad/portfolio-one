@@ -92,7 +92,7 @@ body {
 .page-nav {
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  margin-top: 40px;
+  margin-top: 60px;
 }
 .page-nav-inner {
   width: calc(100vw - 48px);
@@ -143,7 +143,7 @@ body {
 .hero h1 {
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
-  font-size: 56px;
+  font-size: 52px;
   line-height: 1.04;
   letter-spacing: -0.025em;
   color: var(--ink);
@@ -806,7 +806,7 @@ table.data .mentions { font-variant-numeric: tabular-nums; color: var(--reading)
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-top: 44px;
-  padding: 26px 0;
+  padding: 28px 0;
   background: var(--card);
 }
 .site-footer__inner {
@@ -926,3 +926,22 @@ table.data .mentions { font-variant-numeric: tabular-nums; color: var(--reading)
 .section--airy figcaption.figcap { margin-top: 18px; }
 .section--airy .stats { margin-top: 56px; }
 .section--airy .cardlist { margin-top: 34px; }
+
+/* ---------- Quote cards (shared by all case studies) ---------- */
+.quotes{gap:38px;background:var(--card);border-radius:16px;padding:28px 32px}
+.quote{background:none;border-radius:0;margin:0;padding:2px 0 2px 16px;border-left:3px solid #DDA082;display:block}
+.quote::before,.quote::after{content:none}
+.quote p{font-size:19px;font-weight:600;line-height:1.35;letter-spacing:-0.01em}
+.cite{font-size:13.5px;line-height:1.5;color:var(--muted);margin:14px 0 0}
+
+/* ---------- Overview: 3-up meta + phase timeline (shared) ---------- */
+.meta--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.timeline{margin:56px 0 0}
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:24px 0 0;background:var(--card);border-radius:16px}
+.phase{padding:24px 28px 26px;position:relative}
+.phase+.phase{padding-left:34px}
+.phase+.phase::before{content:"";position:absolute;left:0;top:28px;bottom:28px;width:1px;background:#EFECE6}
+.phase__label{display:block;font-size:11px;font-weight:700;letter-spacing:0.75px;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.phase__date{font-size:15px;font-weight:600;color:var(--ink-2);margin:0 0 10px}
+.phase p:last-child{font-size:15px;line-height:1.55;margin:0}
+@media (max-width:720px){.meta--3,.phases{grid-template-columns:1fr}.phase+.phase{padding-left:28px}.phase+.phase::before{top:0;bottom:auto;left:28px;right:28px;width:auto;height:1px}}

@@ -3,246 +3,328 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Global Navigation & Decoupling — Hasan Tanveer Ahmad</title>
+<title>Global Navigation &amp; Decoupling · Hasan Tanveer Ahmad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../case-study-2/case-study.css" />
 <style>
-  :root {
-    --bg: #F8F5F0;
-    --ink: #16140F;
-    --ink-2: #2A2823;
-    --muted: #615D54;
-    --line: #E7E3DC;
-    --chip: #F0EDE6;
-    --accent: #E2622F;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Inter', system-ui, -apple-system, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    min-height: 100vh;
-  }
-  .page {
-    max-width: 1024px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 28px 64px 56px;
-    }
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 0 22px;
-  }
-  .brand {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--ink);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color .15s ease;
-  }
-  .back-link__icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: currentColor; }
-  .back-link:hover { color: var(--accent); }
-  .back-link--next .back-link__label { padding-left: 4px; }
-  .back-link:not(.back-link--next) .back-link__label { padding-right: 4px; }
-  .page-nav { margin-top: 72px; }
-  .page-nav-inner { display: flex; align-items: center; justify-content: space-between; }
-
-  .stage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 80px 0 40px;
-    gap: 24px;
-  }
-  .chip {
-    display: inline-block;
-    background: var(--chip);
-    color: var(--ink-2);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    padding: 6px 10px;
-    border-radius: 999px;
-    text-transform: uppercase;
-  }
-  h1 {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 800;
-    font-size: 52px;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin: 0;
-    max-width: 960px;
-  }
-  .teaser {
-    color: var(--muted);
-    font-size: 24px;
-    line-height: 1.55;
-    max-width: 960px;
-    margin: 0;
-  }
-  .status {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-top: 8px;
-  }
-  .dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-@media (max-width: 720px) {
-    .page { padding: 24px 24px 40px; }
-    h1 { font-size: 44px; }
-    .stage { padding: 48px 0 32px; }
-  }
-
-  /* ---------- Footer (matches homepage) ---------- */
-  .site-footer {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    border-top: 0;
-    padding: 32px 0;
-    background: #FFFFFF;
-  }
-  .site-footer__inner {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-  .site-footer__copy {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .site-footer__links {
-    display: flex;
-    gap: 44px;
-  }
-  .site-footer__links a {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color .15s ease;
-  }
-  .site-footer__links a:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  @media (max-width: 640px) {
-    .site-footer__inner {
-      flex-direction: column;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 0 clamp(16px, 5vw, 28px);
-    }
-    .site-footer__links {
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-  }
-
+a{color:var(--accent)}a:hover{color:var(--accent-2)}
+.wide{max-width:960px;width:calc(100vw - 48px);margin-left:50%;transform:translateX(-50%)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:56px 0 0}
+.compare__card{background:var(--card);border-radius:16px;padding:24px 28px 26px}
+.compare__card .microlabel{margin:0 0 12px;font-size:17px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink)}
+.compare__card .list li{font-size:15px}
+.compare__card .list{margin:0}
+.compare__card .list li:last-child{margin-bottom:0}
+.card-note{background:var(--card);border-radius:16px;padding:28px 32px;margin-top:40px}
+.card-note h3.h3{margin:0 0 10px}
+.card-note p{margin:0}
+.card-note p.path{margin-top:12px;font-weight:500;color:var(--ink-2)}
+.card-note .list{margin:0}
+.card-note .list li:last-child{margin-bottom:0}
+@media (max-width:720px){.compare{grid-template-columns:1fr}}
+.carousel .carousel__frame{padding:0}
+.carousel .carousel__nav--prev{left:-54px}.carousel .carousel__nav--next{right:-54px}
+.carousel .figcap{padding-left:0;padding-right:0}
+@media (max-width:1100px){.carousel .figcap{padding-left:54px;padding-right:54px}.carousel .carousel__frame{padding:0 54px}.carousel .carousel__nav--prev{left:0}.carousel .carousel__nav--next{right:0}}
+.carousel .carousel__track{align-items:flex-start}
+.carousel .carousel__viewport{transition:height .42s cubic-bezier(.4,0,.2,1)}
+@media (max-width:640px){.carousel .carousel__frame{padding:0 40px}.carousel .figcap{padding-left:40px;padding-right:40px}#final-carousel>.microlabel{margin-left:40px}}
+#final-carousel{margin:38px 0 34px 50%}
+#final-carousel>.microlabel{margin:0 0 12px}
+@media (max-width:1100px){#final-carousel>.microlabel{margin-left:54px}}
+@media (max-width:640px){#final-carousel>.microlabel{margin-left:40px}}
+.carousel{margin-top:38px}
+#workshop-carousel .carousel__viewport,#tested-carousel .carousel__viewport{border:1px solid var(--line)}
+#menus-carousel .carousel__viewport{background:#262626}
+.carousel .carousel__slide img{aspect-ratio:auto;height:auto;object-fit:contain}
 </style>
 </head>
 <body>
-  <div class="page">
-    <nav class="nav">
-      <a class="back-link" href="../index.html">
-        <span class="back-link__icon" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
-        </span>
-        <span class="back-link__label">Back to Homepage</span>
-      </a>
-    </nav>
+<div class="page">
+<nav class="nav">
+<div class="nav-inner">
+<a class="back-link" href="../index.html"><span class="back-link__icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg></span><span class="back-link__label">Back to Homepage</span></a>
+</div>
+</nav>
 
-    <main class="stage">
-      <h1>Global Navigation & Decoupling</h1>
-      <p class="teaser">A three-phase simplification of an overloaded multi-brand navigation that created clear, independent experiences for The LYCRA Company and its brands.</p>
-      <div class="status"><span class="dot"></span> Case study coming soon</div>
-    </main>
-    <nav class="page-nav">
-      <div class="page-nav-inner">
-        <a class="back-link" href="../index.html">
-          <span class="back-link__icon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
-          </span>
-          <span class="back-link__label">Back to Homepage</span>
-        </a>
-        <a class="back-link back-link--next" href="../case-study-2/index.html">
-          <span class="back-link__label">Next Project</span>
-          <span class="back-link__icon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-          </span>
-        </a>
-      </div>
-    </nav>
-  </div>
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <span class="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
-        <nav class="site-footer__links">
-          <a id="copyEmail" href="#">Copy email</a>
-          <a href="../assets/Hasan_Ahmad_Resume_v5.pdf" target="_blank" rel="noopener">View Resume</a>
-        </nav>
-      </div>
-    </footer>
+<header class="hero">
+<div class="hero-inner">
+<h1>Global Navigation &amp; Decoupling</h1>
+<p class="deck" style="font-weight:400;line-height:1.5;color:#66625B;font-size:24px">A three-phase simplification of an overloaded multi-brand navigation that created clear, independent experiences for The LYCRA Company and its brands.</p>
+<figure class="fig herofig fig-bleed" style="margin-bottom:56px">
+<img class="fig__img" src="assets/gn-hero.png" alt="LYCRA.com in a browser window with the Explore mega-menu open, showing Get to know us and Our brands columns" width="1846" height="786" />
+</figure>
+</div>
+</header>
+
+<section class="section" style="border-top:1px solid var(--line);width:calc(100vw - 48px);max-width:960px;margin-left:50%;transform:translateX(-50%)">
+<div class="wrap" style="max-width:960px">
+<h2 class="h2">Overview</h2>
+<p>When the LYCRA, THERMOLITE, and COOLMAX websites were combined into one mega-site, the global navigation became overloaded and essential links became deeply nested. I simplified the navigation using the existing design system, helped restructure the content as the brands transitioned to individual sites, and designed each brand’s navigation using a new design system.</p>
+<div class="meta meta--3" style="margin:32px 0 0">
+<div class="meta__item"><span class="meta__label">My Role</span><p class="meta__title" style="font-size:15px">UX Designer</p><div class="meta__body"><p>IA, sitemapping, usability testing, UI design</p></div></div>
+<div class="meta__item"><span class="meta__label">Team</span><div class="meta__body"><p><strong style="font-size: 14.75px">PM, Global Head of Digital Content, VP of Brands &amp; Marketing</strong></p><p style="font-size: 14.75px"><strong>VML</strong> — new design system</p><p style="font-size: 14.75px"><strong>CI&amp;T</strong> — development team</p></div></div>
+<div class="meta__item"><span class="meta__label">Methods</span><div class="meta__body"><p>Sitemapping, IA workshops, usability testing</p></div></div>
+</div>
+<div class="timeline">
+<h3 class="h3" style="margin:0 0 10px">Timeline</h3>
+<p style="margin:0">This project ran from January 2023 – June 2025 and took a three-phase approach.</p>
+</div>
+<div class="phases">
+<div class="phase"><span class="phase__label">Mega site merge</span><p class="phase__date">Jan 2023</p><p>Four brand sites merged into one. Overloaded, multi-click navigation.</p></div>
+<div class="phase"><span class="phase__label">Simplified navigation</span><p class="phase__date">Sept 2023 – Mar 2025</p><p>Four brand sites merged into one. Overloaded, multi-click navigation.</p></div>
+<div class="phase"><span class="phase__label">Seperation &amp; redesigned</span><p class="phase__date">Mar – Jun 2025</p><p>Sites split apart. 4 sites launch with the new design system.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<p class="section-kicker">Too many clicks</p>
+<h2 class="h2">Phase 1: The Problem</h2>
+<p>LYCRA.com serves brands, mills and retailers looking for the right fiber technology. In January 2023, the separate brand sites were merged into one without first restructuring the content. Each brand brought its own products and pages, and reaching a destination could take three or four clicks.</p>
+<div class="card-note">
+<h3 class="h3" style="margin-bottom:12px">The Most Basic Question, Buried</h3>
+<p>"What is LYCRA® fiber?" is the core product question and likely a top task for new visitors. It sat 4 levels deep.</p>
+<p class="path" style="font-weight: 400">Brands <b>→</b> LYCRA <b>→</b> About LYCRA fiber <b>→</b> What is LYCRA fiber?</p>
+</div>
+</div>
+<figure class="fig fig-bleed">
+<video class="fig__img" src="assets/gn-click-through.mp4" autoplay loop muted playsinline disablepictureinpicture preload="auto" aria-label="Screen recording: clicking through four levels of the original navigation to reach What is LYCRA fiber?" style="display:block;width:100%;height:auto;pointer-events:none"></video>
+<figcaption class="figcap">Reaching "What is LYCRA fiber?" in the original navigation</figcaption>
+</figure>
+<div class="wrap">
+<h3 class="h3">Two Ways In, One Invisible</h3>
+<p>Brand names and the large brand logos opened the same sub-menu, but nothing signaled the logos were clickable</p>
+</div>
+<figure class="fig fig-bleed">
+<img class="fig__img" src="assets/gn-brands.png" alt="Legacy Our Brands menu: brand names in the left column and large brand logos both open the same sub-menu, but nothing signals the logos are clickable" width="1294" height="446" />
+</figure>
+<div class="wrap">
+<h3 class="h3" style="margin-top:72px">One List, Two Behaviors</h3>
+<p>Inside a single column, some items opened a page and others opened another column. The only difference was a small arrow, and nothing explained what it meant. Users couldn't tell what a click would do until they made it.</p>
+</div>
+<figure class="fig fig-bleed">
+<img class="fig__img" src="assets/gn-arrows.png" alt="Legacy Our Brands menu: Discover LYCRA brand has an arrow and jumps straight to a page, while About LYCRA fiber has no arrow and opens another sub-menu" width="1294" height="448" />
+<figcaption class="figcap">The 2nd level of the original navigation, an arrow lead to a page, no arrow opened another column.</figcaption>
+</figure>
+</section>
+
+<section class="section">
+<div class="wrap">
+<p class="section-kicker">Everything in One Menu</p>
+<h2 class="h2">Phase 2: Simplify</h2>
+<p>The redesign had to stay within the existing design system, so the fix came from structure alone. I mapped a restructured navigation live in Miro with the Project Manager and Global Head of Digital Content, grouping every destination under clear headers.</p>
+</div>
+<figure class="carousel" id="miro-carousel" role="group" aria-roledescription="carousel" aria-label="Miro restructured navigation boards" tabindex="0">
+<div class="carousel__frame">
+<div class="carousel__viewport">
+<div class="carousel__track">
+<div class="carousel__slide"><img src="assets/gn-miro-1.png" alt="Miro board: restructured LYCRA ONE Marketplace and Our Brands menus, each grouped under section headers" width="2885" height="1386" /></div>
+<div class="carousel__slide"><img src="assets/gn-miro-2.png" alt="Miro board: restructured Sustainability and News + Innovations menus, each grouped under section headers" width="2887" height="1385" /></div>
+</div>
+<div class="carousel__dots"><button class="carousel__dot" type="button" data-go="0" aria-label="Show Marketplace and Our Brands" aria-current="true"></button><button class="carousel__dot" type="button" data-go="1" aria-label="Show Sustainability and News + Innovations"></button></div>
+</div>
+<button class="carousel__nav carousel__nav--prev" type="button" data-dir="-1" aria-label="Previous board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+<button class="carousel__nav carousel__nav--next" type="button" data-dir="1" aria-label="Next board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<figcaption class="figcap">Screenshots from the Miro session</figcaption>
+</figure>
+<div class="wrap">
+<h3 class="h3">One Click Away</h3>
+<p>Each top-level item opens one flat mega-menu. Every item is a direct link, so a click always does one thing. The brand logos stayed, as headers above visible links rather than the only way in.</p>
+<h3 class="h3">Deciding What Goes Where</h3>
+<p>The main decision was to organize each menu around how people look for things rather than how the company was structured. LYCRA ONE Marketplace links were grouped by audience: services, brands and retailers, and mills. In Our Brands, every page for a brand sits in one visible column, so About LYCRA Fiber, which used to sit three levels deep, became the first link under LYCRA.</p>
+</div>
+<figure class="fig fig-bleed">
+<img class="fig__img" src="assets/gn-our-brands.png" alt="Redesigned Our Brands mega-menu: LYCRA, THERMOLITE, COOLMAX and LYCRA HyFit logos as column headers above lists of direct links" width="1920" height="718" />
+</figure>
+<figure class="carousel" id="menus-carousel" role="group" aria-roledescription="carousel" aria-label="Redesigned top-level menus" tabindex="0">
+<div class="carousel__frame">
+<div class="carousel__viewport">
+<div class="carousel__track">
+<div class="carousel__slide"><img src="assets/gn-menu-marketplace.png" alt="Redesigned LYCRA ONE Marketplace menu: Services, For Brands & Retailers and For Mills columns" width="1920" height="508" /></div>
+<div class="carousel__slide"><img src="assets/gn-menu-sustainability.png" alt="Redesigned Sustainability menu: Sustainability Platform, Updates + Progress and Collaborations columns" width="1920" height="493" /></div>
+<div class="carousel__slide"><img src="assets/gn-menu-news.png" alt="Redesigned News + Innovations menu: News + Events, Innovation at work and Search Technologies columns" width="1920" height="508" /></div>
+</div>
+<div class="carousel__dots"><button class="carousel__dot" type="button" data-go="0" aria-label="Show Marketplace" aria-current="true"></button><button class="carousel__dot" type="button" data-go="1" aria-label="Show Sustainability"></button><button class="carousel__dot" type="button" data-go="2" aria-label="Show News + Innovations"></button></div>
+</div>
+<button class="carousel__nav carousel__nav--prev" type="button" data-dir="-1" aria-label="Previous menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+<button class="carousel__nav carousel__nav--next" type="button" data-dir="1" aria-label="Next menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+</figure>
+<div class="wrap">
+<div class="compare">
+<div class="compare__card"><span class="microlabel">Before</span><ul class="list"><li>Logos clickable with no signal</li><li>Two behaviors within one list</li><li>Up to four levels deep</li></ul></div>
+<div class="compare__card"><span class="microlabel microlabel--redesign">After</span><ul class="list"><li>Logos are headers over visible links</li><li>Every item is a direct link</li><li>One flat menu</li></ul></div>
+</div>
+<div class="card-note">
+<h3 class="h3">Shipped and Held</h3>
+<p>The redesigned navigation launched in September 2023 and stayed in production for about 18 months, until the brand sites were separated.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<p class="section-kicker">From one site to four</p>
+<h2 class="h2">Phase 3: Separation</h2>
+<p>In 2024, leadership decided to separate the merged site with two goals in mind. Giving each brand its own site would <b>simplify navigation further,</b> and it would <b>let each brand build its own identity</b> instead of living under the LYCRA.com name. The separation produced a corporate parent site, The LYCRA Company, above three standalone brand sites: LYCRA, THERMOLITE and COOLMAX.</p>
+</div>
+<figure class="fig fig-bleed" style="max-width:720px">
+<img class="fig__img" style="border:0" src="assets/gn-separation-v2.png" alt="Site map: the LYCRA.com mega-site splits into four sites: LYCRA.com, THERMOLITE.com, COOLMAX.com and The LYCRA Company (corporate site)" width="2494" height="1562" />
+</figure>
+<div class="wrap" style="margin-top:56px">
+<h3 class="h3">A Proposal Built Around Use Cases</h3>
+<p>Senior leadership wanted users to find technologies by use case. I proposed a restructure for LYCRA.com that organized products by sector and by activity.</p>
+</div>
+<figure class="fig fig-bleed">
+<img class="fig__img" src="assets/gn-sitemap-proposal.png" alt="Original sitemap proposal: Homepage branching into Products, Explore (by sector, by activity, brand collabs) and Services, with a legend for top-level nav, sub-headings and repeating page templates" width="2009" height="1219" />
+<figcaption class="figcap">My original sitemap proposal</figcaption>
+</figure>
+<div class="wrap" style="margin-top:56px">
+<h3 class="h3">User Testing</h3>
+<p>Before development, I ran exploratory usability testing comparing multiple navigation directions, including my Phase 2 (simplified) design. It was a small study with 2 experienced LYCRA customers, so the goal was to surface problems rather than pick a winner.</p>
+</div>
+<figure class="carousel" id="tested-carousel" role="group" aria-roledescription="carousel" aria-label="Tested navigation direction" tabindex="0">
+<div class="carousel__frame">
+<div class="carousel__viewport">
+<div class="carousel__track">
+<div class="carousel__slide"><img src="assets/gn-tested-products-v2.jpg" alt="Tested navigation: Products mega-menu organized per LYCRA brand, per category and per fabric process, with Support and Our Range in the utility bar" width="2560" height="1208" /></div>
+<div class="carousel__slide"><img src="assets/gn-tested-support-v2.jpg" alt="Tested navigation: Support dropdown in the utility bar with Contact us, FAQ and LYCRA ONE Help center" width="2560" height="1106" /></div>
+<div class="carousel__slide"><img src="assets/gn-tested-services-v2.jpg" alt="Tested navigation: Services mega-menu with Work with us and LYCRA ONE Marketplace columns, with brand sites linked in the utility bar" width="2560" height="1106" /></div>
+</div>
+<div class="carousel__dots"><button class="carousel__dot" type="button" data-go="0" aria-label="Show Products" aria-current="true"></button><button class="carousel__dot" type="button" data-go="1" aria-label="Show Support"></button><button class="carousel__dot" type="button" data-go="2" aria-label="Show Services"></button></div>
+</div>
+<button class="carousel__nav carousel__nav--prev" type="button" data-dir="-1" aria-label="Previous screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+<button class="carousel__nav carousel__nav--next" type="button" data-dir="1" aria-label="Next screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<figcaption class="figcap">Support, eventually went on to own its own section under the "Services" tab.</figcaption>
+</figure>
+<div class="wrap">
+<div class="card-note">
+<h3 class="h3">Findings</h3>
+<ul class="list"><li style="font-size: 16px">Both users said the navigation structure felt familiar.</li><li style="font-size: 16px">Users found the three navigation categories easy to understand.</li><li style="font-size: 16px">Users clicked "Our Range" expecting to see LYCRA products, not LYCRA brands.</li><li style="font-size: 16px">Users wanted the ability to access the other LYCRA brand sites within one click, not two (no drop-down)</li><li style="font-size: 16px">Placing help and support under “Services” made them difficult to find. Users expect a dedicated Support section.</li></ul>
+</div>
+</div>
+<div class="wrap">
+<h3 class="h3">2-Day Restructure Workshop</h3>
+<p>In pursuit of the final site-map direction for Phase 3, I organized a 2-day live Miro workshop where I worked with the project manager, the Global Head of Digital Content, and the VP of Brands &amp; Marketing to decide what to keep, remove and reassign.</p>
+<p>The workshop kept the core idea, browsing by use case, and broadened it: products became findable three ways, by brand, by garment category and by fabric process. Browsing by activity didn't carry forward. Some tools came out of the navigation entirely, such as brand licensing and garment letter requests.</p>
+</div>
+<figure class="carousel" id="workshop-carousel" role="group" aria-roledescription="carousel" aria-label="Workshop sitemaps for each brand site" tabindex="0">
+<div class="carousel__frame">
+<div class="carousel__viewport">
+<div class="carousel__track">
+<div class="carousel__slide"><img src="assets/gn-workshop-lycra.jpg" alt="Workshop sitemap for LYCRA.com: Explore, Products (per brand, per category, per fabric process) and Services, with License the brand and Request Garment Letter struck out" width="2021" height="1024" /></div>
+<div class="carousel__slide"><img src="assets/gn-workshop-thermolite.jpg" alt="Workshop sitemap for THERMOLITE.com with the same Explore, Products and Services structure" width="2056" height="1046" /></div>
+<div class="carousel__slide"><img src="assets/gn-workshop-coolmax.jpg" alt="Workshop sitemap for COOLMAX.com with the same Explore, Products and Services structure" width="2044" height="1020" /></div>
+</div>
+<div class="carousel__dots"><button class="carousel__dot" type="button" data-go="0" aria-label="Show LYCRA.com" aria-current="true"></button><button class="carousel__dot" type="button" data-go="1" aria-label="Show THERMOLITE.com"></button><button class="carousel__dot" type="button" data-go="2" aria-label="Show COOLMAX.com"></button></div>
+</div>
+<button class="carousel__nav carousel__nav--prev" type="button" data-dir="-1" aria-label="Previous sitemap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+<button class="carousel__nav carousel__nav--next" type="button" data-dir="1" aria-label="Next sitemap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<figcaption class="figcap">2-Day Miro workshop. LYCRA, THERMOLITE, COOLMAX</figcaption>
+</figure>
+<div class="wrap">
+<h3 class="h3">Designed with the VML Design System</h3>
+<p>I translated the restructured navigation into VML's new design system and designed it for each brand site. CI&amp;T built and released the sites in phases: LYCRA in March 2025, THERMOLITE in May, COOLMAX in June. Organizing products by garment category, an idea from the original proposal, made it into production.</p>
+</div>
+<figure class="fig carousel" id="final-carousel" role="group" aria-roledescription="carousel" aria-label="Launched LYCRA.com mega-menus" tabindex="0">
+<div class="carousel__frame">
+<div class="carousel__viewport">
+<div class="carousel__track">
+<div class="carousel__slide"><img src="assets/gn-final-explore.jpg" alt="LYCRA.com Explore mega-menu: Get to know us and Our brands columns, with What is LYCRA fiber? as the first link" width="2020" height="778" /></div>
+<div class="carousel__slide"><img src="assets/gn-final-products.jpg" alt="LYCRA.com Products mega-menu: browse by garment category or by fabric process" width="1635" height="962" /></div>
+<div class="carousel__slide"><img src="assets/gn-final-services.jpg" alt="LYCRA.com Services mega-menu: Work with us, LYCRA ONE portal and Support columns" width="2083" height="755" /></div>
+</div>
+<div class="carousel__dots"><button class="carousel__dot" type="button" data-go="0" aria-label="Show Explore" aria-current="true"></button><button class="carousel__dot" type="button" data-go="1" aria-label="Show Products"></button><button class="carousel__dot" type="button" data-go="2" aria-label="Show Services"></button></div>
+</div>
+<button class="carousel__nav carousel__nav--prev" type="button" data-dir="-1" aria-label="Previous menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+<button class="carousel__nav carousel__nav--next" type="button" data-dir="1" aria-label="Next menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<figcaption class="figcap">Use carousel to view all three images.</figcaption>
+</figure>
+</section>
+
+<section class="section">
+<div class="wide">
+<p class="section-kicker">The evolution</p>
+<h2 class="h2">One Navigation, 3 Phases</h2>
+</div>
+<figure class="fig fig-bleed">
+<span class="microlabel">PHASE 1</span>
+<img class="fig__img" src="assets/gn-evo-phase1.jpg" alt="Phase 1 navigation: Our Brands menu with nested columns, About LYCRA fiber opening a third column" width="1294" height="447" />
+</figure>
+<figure class="fig fig-bleed" style="margin-top:40px">
+<span class="microlabel">PHASE 2</span>
+<img class="fig__img" src="assets/gn-evo-phase2.jpg" alt="Phase 2 navigation: flat Our Brands mega-menu with brand logos as column headers" width="1920" height="718" />
+</figure>
+<figure class="fig fig-bleed" style="margin-top:40px">
+<span class="microlabel">PHASE 3</span>
+<img class="fig__img" src="assets/gn-evo-phase3.jpg" alt="Phase 3 navigation: LYCRA.com Explore mega-menu with What is LYCRA fiber? as the first link" width="2020" height="778" />
+</figure>
+</section>
+
+<section class="section">
+<div class="wrap">
+<h2 class="h2">Outcome</h2>
+<div class="card-note" style="margin-top:24px">
+<ul class="list">
+<li>Navigation went from up to four levels deep to a single flat menu.</li>
+<li>The Phase 2 redesign shipped and stayed live for about 18 months.</li>
+<li>Testing findings shaped the launch: a dedicated Support column and no overlapping "Our Range" label.</li>
+<li>Product organization by garment category, from the original proposal, shipped in the decoupled LYCRA.com.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<h2 class="h2">Reflection</h2>
+<p>Phase 2 showed how much could be fixed through structure alone, without touching the visual design. Phase 3 showed the limits of rearranging the same content. Phase 1 &amp; 2 were a reflection of a tangled organization. The lasting fix was to to untangle the content itself. And that takes alignment with leadership, in addition to design.</p>
+<p>If I did it again, I'd test earlier and with people unfamiliar with LYCRA. Both participants were experienced customers. Newcomers who know nothing of LYCRA, went untested, even though they are the the people the navigation needs to serve most. Even so, a two-person test caught two problems before they shipped.</p>
+</div>
+</section>
+
+<nav class="page-nav">
+<div class="page-nav-inner">
+<a class="back-link" href="../index.html"><span class="back-link__icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg></span><span class="back-link__label">Back to Homepage</span></a>
+<a class="back-link back-link--next" href="../case-study-2/index.html"><span class="back-link__label">Next Project</span><span class="back-link__icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg></span></a>
+</div>
+</nav>
+</div>
+
+<footer class="site-footer">
+<div class="site-footer__inner">
+<span class="site-footer__copy">© 2026 HAAS PORTFOLIO</span>
+<nav class="site-footer__links">
+<a id="copyEmail" href="#">Copy email</a>
+<a href="../assets/Hasan_Ahmad_Resume_v6.pdf" target="_blank" rel="noopener">View Resume</a>
+</nav>
+</div>
+</footer>
 <script>
-  (function () {
-    var link = document.getElementById('copyEmail');
-    if (!link) return;
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      var email = 'hasantanveerahmad@gmail.com';
-      var done = function () {
-        var prev = link.textContent;
-        link.textContent = 'Copied ✓';
-        setTimeout(function () { link.textContent = prev; }, 1600);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(done).catch(done);
-      } else { done(); }
-    });
-  })();
+(function(){var link=document.getElementById('copyEmail');if(!link)return;link.addEventListener('click',function(e){e.preventDefault();var email='hasantanveerahmad@gmail.com';var done=function(){var prev=link.textContent;link.textContent='Copied ✓';setTimeout(function(){link.textContent=prev;},1600);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(email).then(done).catch(done);}else{done();}});})();
+</script>
+<script>
+document.querySelectorAll('.carousel').forEach(function(root){var track=root.querySelector('.carousel__track'),slides=root.querySelectorAll('.carousel__slide'),dots=root.querySelectorAll('.carousel__dot'),prev=root.querySelector('.carousel__nav--prev'),next=root.querySelector('.carousel__nav--next'),i=0;
+var vp=root.querySelector('.carousel__viewport');function fit(){var h=slides[i].querySelector('img').offsetHeight;if(h)vp.style.height=h+'px';}window.addEventListener('resize',fit);slides.forEach(function(s){var im=s.querySelector('img');if(im&&!im.complete)im.addEventListener('load',fit);});
+function render(){track.style.transform='translateX('+(-i*100)+'%)';fit();dots.forEach(function(d,n){d.setAttribute('aria-current',n===i?'true':'false');});prev.disabled=i===0;next.disabled=i===slides.length-1;}
+function go(n){i=Math.max(0,Math.min(slides.length-1,n));render();}
+root.querySelectorAll('[data-dir]').forEach(function(b){b.addEventListener('click',function(){go(i+parseInt(b.dataset.dir,10));});});
+dots.forEach(function(d){d.addEventListener('click',function(){go(parseInt(d.dataset.go,10));});});
+root.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){go(i-1);e.preventDefault();}if(e.key==='ArrowRight'){go(i+1);e.preventDefault();}});
+var x0=null;root.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});root.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1));x0=null;});
+render();});
+</script>
+<script>
+(function(){var v=document.querySelector('video[src="assets/gn-click-through.mp4"]');if(!v)return;var TRIM=1;function tick(){if(v.duration&&v.currentTime>=v.duration-TRIM){v.currentTime=0;v.play();}requestAnimationFrame(tick);}requestAnimationFrame(tick);})();
 </script>
 </body>
 </html>
